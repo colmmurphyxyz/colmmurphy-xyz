@@ -7,7 +7,7 @@
         "checkJs": true,
         "declaration": true,
         "declarationMap": true,
-        "rootDir": "src",
+        "rootDir": "tssrc",
         "outDir": "dist",
         "typeRoots": [ "node_modules/@types" ],
 
@@ -42,6 +42,6 @@
     },
 
     "include": [
-        "src/**/*"
+        "tssrc/**/*"
     ]
 }
