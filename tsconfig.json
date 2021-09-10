@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        /* Basic Options */
+        "target": "ES6",
+        "lib": ["es6"],
+        "allowJs": true,
+        "checkJs": true,
+        "declaration": true,
+        "declarationMap": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "typeRoots": [ "node_modules/@types" ],
+
+        "baseUrl": ".",
+
+        "paths": {
+            "*": [
+                "node_modules/*"
+            ]
+        },
+
+        /* Strict Type-Checking Options */
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+
+        /* Additional Checks */
+        "noImplicitReturns": true,
+        "esModuleInterop": true,
+
+        /* Module Resolution Options */
+        "moduleResolution": "node",
+
+        /* Advanced Options */
+        "resolveJsonModule": true
+
+    },
+
+    "include": [
+        "src/**/*"
+    ]
+}
