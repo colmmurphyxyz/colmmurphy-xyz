@@ -1,0 +1,90 @@
+.project {
+    display: grid;
+    grid-template-areas:
+    "gridImage gridTitle"
+    "gridImage gridDescription"
+    "gridImage gridPoints"
+    "gridImage gridActions";
+    min-width: 100%;
+    --button-background-color: rgb(25, 118, 210);
+}
+
+.columnsInverted {
+    grid-template-areas:
+    "gridTitle       gridImage "
+    "gridDescription gridImage "
+    "gridPoints      gridImage "
+    "gridActions     gridImage ";
+}
+
+@media only screen and (max-width: 1000px) {
+    .project {
+        grid-template-areas:
+            "gridTitle"
+            "gridImage"
+            "gridDescription"
+            "gridPoints"
+            "gridActions"
+    }
+
+    .columnsInverted {
+        grid-template-areas:
+            "gridTitle"
+            "gridImage"
+            "gridDescription"
+            "gridPoints"
+            "gridActions"
+    }
+}
+
+.project > img {
+    grid-area: gridImage;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    overflow: auto;
+}
+
+.project > h3 {
+    grid-area: gridTitle;
+    text-align: center;
+}
+
+.project > p {
+    grid-area: gridDescription;
+    padding: 1em;
+}
+
+#projectDescription {
+    grid-area: gridPoints;
+    color: var(--dark-text-color);
+}
+
+#projectDescription > li {
+    padding: 0.5em 0;
+}
+
+#projectActions {
+    grid-area: gridActions;
+    list-style-type: none;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.columnsInverted #projectActions {
+    justify-content: flex-start;
+}
+
+#projectActions > * {
+    padding: 0.5em;
+}
+
+@media only screen and (max-width: 600px) {
+    #projectActions > * {
+        width: 100%;
+    }
+}
