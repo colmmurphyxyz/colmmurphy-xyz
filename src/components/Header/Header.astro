@@ -1,0 +1,57 @@
+---
+
+---
+
+<header>
+    <h1>
+        <strong>Colm Murphy</strong>
+    </h1>
+    <p>
+        BSc Computer Science Student @ UCC <br />
+        Software Development Engineer @ Pilz Ireland
+    </p>
+    <img id="headshot" src="img/headshot.png" alt="My headshot" />
+</header>
+
+<style>
+    header {
+        matgin: 0 auto;
+        padding: 0 2 rem;
+        display: grid;
+        grid-template-areas:
+            "heading headshot"
+            "subheading headshot";
+    }
+
+    @media only screen and (max-width: 900px) {
+        header {
+            grid-template-areas: 
+                "heading"
+                "subheading"
+                "headshot";
+        }
+    }
+
+    header > h1 {
+        grid-area: heading;
+        min-width: 50%;
+        font-size: 3rem;
+    }
+
+    header > p {
+        font-size: 1.25rem;
+    }
+
+    header > p > br {
+        padding-top: 16px;
+    }
+
+    header > img {
+        grid-area: headshot;
+        border-radius: 50%;
+        width: min(20rem, 100%);
+        height: min(20rem, 100%);
+        margin: 0 auto;
+        object-fit: scale-down;
+    }
+</style>
