@@ -1,5 +1,11 @@
 {
-  "name": "superior-sphere",
+  "name": "colmmurphy-xyz",
+  "author": {
+    "email": "colmmurphy016@gmail.com",
+    "name": "Colm Murphy",
+    "url": "https://colmmurphy.xyz"
+  },
+  "license": "MIT",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
