@@ -49,20 +49,24 @@
 .project > h3 {
     grid-area: gridTitle;
     text-align: center;
+    color: var(--light-text-color);
+    font-size: 2rem;
 }
 
 .project > p {
     grid-area: gridDescription;
     padding: 1em;
+    color: var(--light-gray);
 }
 
-#projectDescription {
+.projectDescription {
     grid-area: gridPoints;
     color: var(--dark-text-color);
 }
 
-#projectDescription > li {
+.projectDescription > li {
     padding: 0.5em 0;
+    color: var(--light-gray);
 }
 
 #projectActions {

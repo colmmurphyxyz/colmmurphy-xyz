@@ -17,7 +17,7 @@ export const Project: React.FC<ProjectProps> = ({imageUrl, title, description, b
             <img src={imageUrl} alt=""/>
             <h3> {title} </h3>
             <p dangerouslySetInnerHTML={{ __html: description }}></p>
-            <ul id={styles.projectDescription}>
+            <ul className={styles.projectDescription}>
                 {
                     bulletPoints.map((point, index) => 
                         <li key={index}>

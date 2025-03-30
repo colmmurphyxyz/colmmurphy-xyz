@@ -101,6 +101,7 @@ export const ProjectsList = () =>
             projects.map((project, index) => 
                 <>
                     <Project 
+                        key={index}
                         imageUrl={project.imageUrl}
                         title={project.title}
                         description={project.description}
