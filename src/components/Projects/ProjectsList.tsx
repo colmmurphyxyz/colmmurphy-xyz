@@ -5,12 +5,13 @@ const projects: ProjectProps[] = [
         {
             imageUrl: "/img/pcc_example.png",
             title: "Pseudo-Code Compiler",
-            description: "My Final-Year Project is to develop a runtime environment for pseudocode, as defined in " +
+            description: "My Final-Year Project was to develop a runtime environment for pseudocode, as defined in " +
                 "<a href=\"https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/\">Introduction To Algorithms</a> " +
                 "by <em>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest</em> and <i>Clifford Stein</i>.",
             bulletPoints: [
-                "Tokenises, parses, transpiles pseudocode to executable Python code",
-                "Accompanied with a standard library with implementations of various data structures",
+                "Tokenises, parses, transpiles pseudocode to executable Python code.",
+                "Provides a graphical interface to support interactive execution of pseudocode.",
+                "Accompanied with a standard library with implementations of various data structures.",
             ],
             actions: [
                 {
@@ -23,12 +24,12 @@ const projects: ProjectProps[] = [
         {
             imageUrl: "/img/sandsoforisis.png",
             title: "Sands of Orisis",
-            description: "A top-down Real Time Strategy game developed in Godot 4 for a university group project",
+            description: "A top-down Real-Time Strategy game developed in Godot 4 for a university group project",
             bulletPoints: [
-                "Developed in eight weeks by a team of 4 students",
-                "Real-time multiplayer networking",
-                "Compatible with Windows, Linux and macOS systems",
-                "Built with an robust event-driven architecture to facilitate new features and network synchronisation",
+                "Developed in eight weeks by a team of 4 students.",
+                "Real-time peer-to-peer multiplayer.",
+                "Compatible with Windows, Linux and macOS systems.",
+                "Event-driven architecture to handle network replication and synchronisation.",
             ],
             actions: [
                 {
@@ -56,11 +57,11 @@ const projects: ProjectProps[] = [
         {
             imageUrl: "/img/react.svg",
             title: "colmmurphy.xyz",
-            description: "My Personal Website, serving as the hub of my online presence",
+            description: "My Personal Website.",
             bulletPoints: [
-                "Developed with React and TypeScript",
-                "Hosted on GitHub Pages",
-                "Continuous Integration via GitHub Actions",
+                "Developed with Astro React and TypeScript.",
+                "Hosted on GitHub Pages.",
+                "Continuous Integration via GitHub Actions.",
             ],
             actions: [
                 {
@@ -73,12 +74,12 @@ const projects: ProjectProps[] = [
         {
             imageUrl: "/img/klaassify_screenshot.png",
             title: "Klaassify",
-            description: "JavaFX desktop Application to visualise your music taste in a novel format",
+            description: "JavaFX desktop Application to visualise your music taste in a novel format.",
             bulletPoints: [
-                "Integrates with the Spotify API to aggregate your listening history and retrieve your favourite artists",
-                "Uses an ExpressJS server to communicate with Spotify without leaking API credentials",
-                "Represents your favourites as vertices of a graph, with similar artists connected by an edge",
-                "utilises a force simulation algorithm to render the graph to a 2D canvas",
+                "Integrates with the Spotify API to aggregate your listening history and retrieve your favourite artists.",
+                "Uses an ExpressJS server to communicate with Spotify without leaking API credentials.",
+                "Represents your favourites as vertices of a graph, with edges connecting similar artists.",
+                "Implements force simulation algorithms to optimally render a graph to the user.",
             ],
             actions: [
                 {
