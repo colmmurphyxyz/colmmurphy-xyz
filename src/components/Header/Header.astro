@@ -16,8 +16,8 @@ import headshot from './headshot.png'
 
 <style>
     header {
-        matgin: 0 auto;
-        padding: 0 2rem;
+        margin: 0 auto;
+        padding: 1rem 2rem;
         display: grid;
         grid-template-areas:
             "heading headshot"
@@ -37,10 +37,12 @@ import headshot from './headshot.png'
         grid-area: heading;
         min-width: 50%;
         font-size: 3rem;
+        margin-left: 2rem;
     }
 
     header > p {
         font-size: 1.25rem;
+        margin-left: 2rem;
     }
 
     header h1, header p {
@@ -58,5 +60,11 @@ import headshot from './headshot.png'
         height: min(20rem, 100%);
         margin: 0 auto;
         object-fit: scale-down;
+    }
+
+    @media only screen and (max-width: 900px) {
+        header > h1, header > p {
+            margin-left: 0px;
+        }
     }
 </style>
