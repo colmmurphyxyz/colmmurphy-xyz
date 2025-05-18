@@ -1,3 +1,7 @@
+#projectsList {
+    padding: 0 1.5em;
+}
+
 .project {
     display: grid;
     grid-template-areas:
