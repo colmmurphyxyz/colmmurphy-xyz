@@ -98,9 +98,10 @@ const projects: ProjectProps[] = [
 
 export const ProjectsList = () =>
     <div id={styles.projectsList}>
+        <ul>
         {
             projects.map((project, index) => 
-                <>
+                <li key={index}>
                     <Project 
                         key={index}
                         imageUrl={project.imageUrl}
@@ -111,7 +112,8 @@ export const ProjectsList = () =>
                         invertColumns={index % 2 === 0}
                     />
                     <hr />
-                </>
+                </li>
             )
         }
+        </ul>
     </div>

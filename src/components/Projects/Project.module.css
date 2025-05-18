@@ -2,6 +2,10 @@
     padding: 0 1.5em;
 }
 
+#projectsList > ul {
+    list-style: none;
+}
+
 .project {
     display: grid;
     grid-template-areas:
