@@ -23,28 +23,22 @@ const { icon, iconAlt, title, url } = Astro.props;
         transform: translateY(-8px);
     }
 
-    .quickLink a {
+    .quickLink > a {
         text-decoration: none;
         width: 100%;
         height: 100%;
+        line-height: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        justify-content: space-evenly;
+        justify-content: space-between;
         color: var(--dark-text-color);
-        padding: 0.5em;
-    }
-
-    .quickLink a * {
-        margin: 0.5em;
     }
 
     .quickLink img {
         height: 45px;
         width: 45px;
-        margin: 0 6px 0 2px;
         padding: 8px;
-        border-radius: 8%;
     }
 
     .quickLink h3 {
