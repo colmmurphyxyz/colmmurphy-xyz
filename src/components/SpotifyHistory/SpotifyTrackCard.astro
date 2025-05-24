@@ -1,0 +1,45 @@
+---
+import { Track } from "../../api/types";
+
+const track: Track = Astro.props.track;
+const coverImage = track.album.images[0];
+
+const coverImageSize = 120;
+const cardWidth = "340px";
+const textWidth = "220px";
+---
+
+<style define:vars={{ cardWidth, textWidth }}>
+    .spotifyTrackCard {
+        margin: 0.5em;
+        padding: 1em;
+        border-radius: 8px;
+        background-color: var(--light-background-color);
+        display: flex;
+        flex-direction: row;
+        width: var(--cardWidth);
+    }
+
+    .spotifyTrackCard > img {
+        margin-right: 1em;
+        border-radius: 8px;
+    }
+
+    .spotifyTrackCard > div {
+        width: var(--textWidth);
+    }
+
+    .spotifyTrackCard > div > h3, .spotifyTrackCard > div > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="spotifyTrackCard">
+    <img src={coverImage.url} width={coverImageSize} height={coverImageSize}/>
+    <div>
+        <h3>{track.artists[0].name}</h3>
+        <p>{track.name}</p>
+    </div>
+</div>
