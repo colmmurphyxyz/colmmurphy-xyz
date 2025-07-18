@@ -11,7 +11,7 @@ const projects: ProjectProps[] = [
             bulletPoints: [
                 "Tokenises, parses, transpiles pseudocode to executable Python code.",
                 "Provides a graphical interface to support interactive execution of pseudocode.",
-                "Accompanied with a standard library with implementations of various data structures.",
+                "Accompanied by a standard library with implementations of various data structures.",
             ],
             actions: [
                 {
@@ -59,7 +59,7 @@ const projects: ProjectProps[] = [
             title: "colmmurphy.xyz",
             description: "My Personal Website.",
             bulletPoints: [
-                "Developed with Astro React and TypeScript.",
+                "Developed with Astro, React and TypeScript.",
                 "Hosted on GitHub Pages.",
                 "Continuous Integration via GitHub Actions.",
             ],
