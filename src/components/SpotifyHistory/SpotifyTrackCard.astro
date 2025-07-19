@@ -1,19 +1,21 @@
 ---
-import { Track } from "../../api/types";
+import { PlayTime, Track } from "../../api/types";
+import { timeAgo } from "./time-formatting";
 
 const track: Track = Astro.props.track;
+const playedAt: PlayTime = Astro.props.playedAt;
 const coverImage = track.album.images[0];
 
 const coverImageSize = 120;
-const cardWidth = "280px";
-const textWidth = "300px";
+const cardWidth = "250px";
 ---
 
-<style define:vars={{ cardWidth, textWidth }}>
+<style define:vars={{ cardWidth }}>
     .spotifyTrackCard {
+        position: relative;
         width: var(--cardWidth);
         margin: 0.5em;
-        padding: 1em;
+        padding-top: 0.9em;
         border-radius: 8px;
         background-color: var(--light-background-color);
 
@@ -26,15 +28,20 @@ const textWidth = "300px";
         border-radius: 8px; 
     }
 
-    .spotifyTrackCard > div {
-        width: var(--text-width);
-    }
-
     .spotifyTrackCard > div > h3, .spotifyTrackCard > div > p {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         text-align: center;
+        padding: 0 1ch;
+    }
+
+    .spotifyTrackCard > p {
+        position: absolute;
+        top: -2px;
+        right: 6px;
+        color: var(--light-gray);
+        font-size: 0.8em;
     }
 </style>
 
@@ -44,4 +51,5 @@ const textWidth = "300px";
         <h3>{track.artists[0].name}</h3>
         <p>{track.name}</p>
     </div>
+    <p>{timeAgo(Date.parse(playedAt))}</p>
 </div>
