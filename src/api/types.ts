@@ -3,8 +3,8 @@ export type SpotifyStatus = {
     reason?: string;
 };
 
-export type SimplifiedArtist = {
-    external_urls: { spotify: string };
+export type SimpleArtist = {
+    externalUrls: { spotify: string };
     href: string;
     id: string;
     name: string;
@@ -19,37 +19,40 @@ export type SpotifyImage = {
 };
 
 export type Album = {
-    album_type: string;
-    total_tracks: number;
-    available_markets: string[];
-    external_urls: { spotify: string };
+    albumType: string;
+    totalTracks: number;
+    externalUrls: { spotify: string };
     href: string;
     id: string;
     images: SpotifyImage[];
     name: string;
-    release_date: string;
-    release_date_precision: string;
-    restrictions: { reason: string };
+    releaseDate: string;
+    releaseDatePrecision: string;
     type: string;
     uri: string;
-    artists: SimplifiedArtist[];
+    artists: SimpleArtist[];
 };
 
 export type Track = {
     album: Album;
-    artists: SimplifiedArtist[];
-    available_markets: string[];
-    disc_number: number,
-    duration_ms: number;
+    artists: SimpleArtist[];
+    discNumber: number,
+    durationMs: number;
     explicit: boolean;
     href: string;
     id: string;
-    is_playable: boolean;
+    isPlayable: boolean;
     name: string;
     popularity: boolean;
-    preview_url?: string;
-    track_number: number;
+    trackNumber: number;
     type: string;
     url: string;
-    is_local: boolean;
+    isLocal: boolean;
+};
+
+export type PlayTime = string;
+
+export type PlayHistory = {
+    playedAt: PlayTime;
+    track: Track;
 };
