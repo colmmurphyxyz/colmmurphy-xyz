@@ -1,4 +1,4 @@
-import { SpotifyStatus, Track } from './types';
+import { PlayHistory, SpotifyStatus, Track } from './types';
 
 const getRestUrl = (): string => `http://localhost:8080/api`;
 
@@ -10,7 +10,7 @@ export const getSpotifyStatus = async () =>
 export const getRecentTracks = async (limit: number) =>
     fetch(`${getRestUrl()}/spotify/recenttracks?limit=${limit}`)
         .then((response) => response.json())
-        .then((json) => json as Track[]);
+        .then((json) => json as PlayHistory[]);
 
 export const getCurrentlyPlayingTrack = async () => {
     const response = await fetch(`${getRestUrl()}/spotify/currentlyplaying`);
@@ -19,3 +19,11 @@ export const getCurrentlyPlayingTrack = async () => {
     }
     return await response.json() as Track;
 };
+
+export const getCurrentAndRecentTracks = async (recentLimit: number): Promise<PlayHistory[]> => {
+    const [current, recent] = await Promise.all([getCurrentlyPlayingTrack(), getRecentTracks(recentLimit)]);
+    if (current === null) {
+        return recent;
+    }
+    return [{ playedAt: "", track: current }, ...recent]
+}
