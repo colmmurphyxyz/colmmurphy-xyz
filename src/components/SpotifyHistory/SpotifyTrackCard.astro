@@ -8,6 +8,10 @@ const coverImage = track.album.images[0];
 
 const coverImageSize = 120;
 const cardWidth = "250px";
+
+const getCoverAlt = (track: Track): string => {
+    return `Cover art for ${track.name} by ${track.artists[0].name}`
+} 
 ---
 
 <style define:vars={{ cardWidth }}>
@@ -46,7 +50,7 @@ const cardWidth = "250px";
 </style>
 
 <div class="spotifyTrackCard">
-    <img src={coverImage.url} width={coverImageSize} height={coverImageSize} />
+    <img src={coverImage.url} width={coverImageSize} height={coverImageSize} alt={getCoverAlt(track)}/>
     <div>
         <h3>{track.artists[0].name}</h3>
         <p>{track.name}</p>
