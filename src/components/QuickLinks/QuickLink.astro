@@ -4,7 +4,7 @@ const { icon, iconAlt, title, url } = Astro.props;
 
 <li class="quickLink">
     <a href={url}>
-        <img src={icon} alt={iconAlt} />
+        <img src={icon} alt={iconAlt} loading="eager"/>
         <h3>{title}</h3>
     </a>
 </li>
