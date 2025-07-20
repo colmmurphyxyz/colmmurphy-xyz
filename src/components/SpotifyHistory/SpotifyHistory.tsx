@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { MouseEventHandler, TouchEventHandler, useEffect, useRef, useState } from "react"
 import { PlayHistory } from "../../api/types"
 import { SpotifyTrackCard } from "./SpotifyTrackCard"
 import styles from "./SpotifyTrackCard.module.css";
@@ -8,13 +8,11 @@ export const SpotifyHistory: React.FC<{}> = () => {
     const [history, setHistory] = useState<PlayHistory[]>([]);
 
     useEffect(() => {
-        console.log("fetching...")
         const fetchTracks = async () => {
             try {
                 const data = await getCurrentAndRecentTracks(10);
                 setHistory(data);
-            } catch(err) {
-                console.log("caught " + err);
+            } catch (err) {
                 setHistory([]);
             }
         }
@@ -22,71 +20,79 @@ export const SpotifyHistory: React.FC<{}> = () => {
         fetchTracks();
     }, []);
 
-    const ref = useRef<HTMLUListElement>(null);
+    const scrollRef = useRef<HTMLUListElement>(null);
+
     let isDown = false;
     let startX: number;
     let scrollLeft: number;
 
-    useEffect(() => {
-        const list = ref.current;
-        if (list === null) {
-            return;
-        }
-        list.addEventListener("mousedown", (e) => {
-            isDown = true;
-            list.classList.add("dragging");
-            startX = e.pageX - list.offsetLeft;
-            scrollLeft = list.scrollLeft;
-        });
-    
-        list.addEventListener("mouseleave", () => {
-            isDown = false;
-            list.classList.remove("dragging");
-        });
-    
-        list.addEventListener("mouseup", () => {
-            isDown = false;
-            list.classList.remove("dragging");
-        });
-    
-        list.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - list.offsetLeft;
-            const walk = (x - startX) * 1.5; // adjust multiplier as needed
-            list.scrollLeft = scrollLeft - walk;
-        });
-    
-        // Touch support
-        list.addEventListener("touchstart", (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - list.offsetLeft;
-            scrollLeft = list.scrollLeft;
-        });
-    
-        list.addEventListener("touchmove", (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - list.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            list.scrollLeft = scrollLeft - walk;
-        });
-    
-        list.addEventListener("touchend", () => {
-            isDown = false;
-        });
-    }, [history]);
+    const onMouseDown: MouseEventHandler<HTMLUListElement> = (e) => {
+        if (scrollRef.current === null) return;
+        isDown = true;
+        scrollRef.current.classList.add("dragging");
+        startX = e.pageX - scrollRef.current.offsetLeft;
+        scrollLeft = scrollRef.current.scrollLeft;
+    };
+
+    const onMouseLeave = () => {
+        if (scrollRef.current === null) return;
+        isDown = false;
+        scrollRef.current.classList.remove("dragging");
+    };
+
+    const onMouseUp = () => {
+        if (scrollRef.current === null) return;
+        isDown = false;
+        scrollRef.current.classList.remove("dragging");
+    };
+
+    const onMouseMove: MouseEventHandler<HTMLUListElement> = (e) => {
+        if (scrollRef.current === null) return;
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 1.5; // multiplier = scroll speed
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const onTouchStart: TouchEventHandler<HTMLUListElement> = (e) => {
+        if (scrollRef.current === null) return;
+        isDown = true;
+        startX = e.touches[0].pageX - scrollRef.current.offsetLeft;
+        scrollLeft = scrollRef.current.scrollLeft;
+    };
+
+    const onTouchMove: TouchEventHandler<HTMLUListElement> = (e) => {
+        if (scrollRef.current === null) return;
+        if (!isDown) return;
+        const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const onTouchEnd = () => {
+        isDown = false;
+    };
 
     if (history.length === 0) {
         return <>
-            <ul id={styles.spotifyHistory} className={styles.horizontalScroll} ref={ref}></ul>
         </>
     }
 
     return <>
         <h2>What I've been listening to</h2>
-        <ul id={styles.spotifyHistory} className={styles.horizontalScroll} ref={ref}>
+        <ul id={styles.spotifyHistory}
+            className={styles.horizontalScroll}
+            ref={scrollRef}
+            onMouseDown={onMouseDown}
+            onMouseLeave={onMouseLeave}
+            onMouseUp={onMouseUp}
+            onMouseMove={onMouseMove}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}>
             {
-                history.map(({playedAt, track}, idx) => (
+                history.map(({ playedAt, track }, idx) => (
                     <li key={idx}>
                         <SpotifyTrackCard track={track} playedAt={playedAt} />
                     </li>

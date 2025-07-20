@@ -3,7 +3,8 @@ h2 {
     text-align: center;
     font-size: 1.8rem;
 }
-ul {
+
+ul#spotifyHistory {
     /* Give some buffer space at either side */
     width: calc(100% - 16px);
     margin: 0 auto;
