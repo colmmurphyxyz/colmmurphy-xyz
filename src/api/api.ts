@@ -12,12 +12,16 @@ export const getRecentTracks = async (limit: number) =>
         .then((response) => response.json())
         .then((json) => json as PlayHistory[]);
 
-export const getCurrentlyPlayingTrack = async () => {
+export const getCurrentlyPlayingTrack = async (): Promise<Track | null> => {
     const response = await fetch(`${getRestUrl()}/spotify/currentlyplaying`);
     if (response.status != 200) {
         return null;
     }
-    return await response.json() as Track;
+    try {
+        return await response.json() as Track
+    } catch {
+        return null;
+    }
 };
 
 export const getCurrentAndRecentTracks = async (recentLimit: number): Promise<PlayHistory[]> => {
