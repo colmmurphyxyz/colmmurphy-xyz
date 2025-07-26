@@ -55,25 +55,6 @@ export const SpotifyHistory: React.FC<{}> = () => {
         scrollRef.current.scrollLeft = scrollLeft - walk;
     };
 
-    const onTouchStart: TouchEventHandler<HTMLUListElement> = (e) => {
-        if (scrollRef.current === null) return;
-        isDown = true;
-        startX = e.touches[0].pageX - scrollRef.current.offsetLeft;
-        scrollLeft = scrollRef.current.scrollLeft;
-    };
-
-    const onTouchMove: TouchEventHandler<HTMLUListElement> = (e) => {
-        if (scrollRef.current === null) return;
-        if (!isDown) return;
-        const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        scrollRef.current.scrollLeft = scrollLeft - walk;
-    };
-
-    const onTouchEnd = () => {
-        isDown = false;
-    };
-
     if (history.length === 0) {
         return <>
         </>
@@ -87,10 +68,7 @@ export const SpotifyHistory: React.FC<{}> = () => {
             onMouseDown={onMouseDown}
             onMouseLeave={onMouseLeave}
             onMouseUp={onMouseUp}
-            onMouseMove={onMouseMove}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}>
+            onMouseMove={onMouseMove}>
             {
                 history.map(({ playedAt, track }, idx) => (
                     <li key={idx}>
