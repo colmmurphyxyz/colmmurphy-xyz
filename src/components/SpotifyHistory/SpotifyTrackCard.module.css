@@ -43,7 +43,8 @@ ul#spotifyHistory {
 
 .spotifyTrackCard > img {
     margin: 0 auto;
-    border-radius: 8px; 
+    border-radius: 8px;
+    pointer-events: none;
 }
 
 .spotifyTrackCard > div > h3, .spotifyTrackCard > div > p {
