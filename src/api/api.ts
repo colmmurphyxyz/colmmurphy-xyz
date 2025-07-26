@@ -2,7 +2,7 @@ import { PlayHistory, SpotifyStatus, Track } from './types';
 
 const getRestUrl = (): string => {
     if (import.meta.env.PROD) {
-        return 'https://api.colmmurphy.xyz'
+        return 'https://api.colmmurphy.xyz/api'
     }
     return 'http://localhost:8080/api'
 }
