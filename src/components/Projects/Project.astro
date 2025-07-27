@@ -1,0 +1,152 @@
+---
+import { parse } from 'node-html-parser';
+
+import { ProjectButtonProps } from "./ProjectButton/project-button-props";
+import ProjectButton from "./ProjectButton/ProjectButton.astro";
+
+const imageUrl: string = Astro.props.imageUrl;
+const title: string = Astro.props.title;
+const description: string = Astro.props.description;
+const bulletPoints: string[] = Astro.props.bulletPoints;
+const actions: ProjectButtonProps[] = Astro.props.projectButtonProps;
+const invertColumns: boolean | undefined = Astro.props.invertColumns;
+
+const bulletPointsHtml = bulletPoints.map(it => parse(it))
+const descriptionHtml = parse(description);
+---
+
+<style>
+    #projectsList {
+        padding: 0 1.5em;
+    }
+
+    #projectsList > ul {
+        list-style: none;
+        padding-left: unset;
+    }
+
+    .project {
+        display: grid;
+        grid-template-areas:
+            "gridImage gridTitle"
+            "gridImage gridDescription"
+            "gridImage gridPoints"
+            "gridImage gridActions";
+        min-width: 100%;
+        --button-background-color: rgb(25, 118, 210);
+    }
+
+    .columnsInverted {
+        grid-template-areas:
+            "gridTitle       gridImage "
+            "gridDescription gridImage "
+            "gridPoints      gridImage "
+            "gridActions     gridImage ";
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .project {
+            grid-template-areas:
+                "gridTitle"
+                "gridImage"
+                "gridDescription"
+                "gridPoints"
+                "gridActions";
+        }
+
+        .columnsInverted {
+            grid-template-areas:
+                "gridTitle"
+                "gridImage"
+                "gridDescription"
+                "gridPoints"
+                "gridActions";
+        }
+    }
+
+    .project > img {
+        grid-area: gridImage;
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        overflow: auto;
+    }
+
+    .project > h3 {
+        grid-area: gridTitle;
+        text-align: center;
+        color: var(--light-text-color);
+        font-size: 2rem;
+    }
+
+    .project > p {
+        grid-area: gridDescription;
+        padding: 1em;
+        color: var(--light-gray);
+    }
+
+    .projectDescription {
+        grid-area: gridPoints;
+        color: var(--dark-text-color);
+    }
+
+    .projectDescription > li {
+        padding: 0.5em 0;
+        color: var(--light-gray);
+    }
+
+    .projectActions {
+        grid-area: gridActions;
+        list-style-type: none;
+        padding-left: 0;
+        padding-right: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .columnsInverted .projectActions {
+        justify-content: flex-start;
+    }
+
+    .projectActions > * {
+        padding: 0.5em;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .projectActions > * {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class={`project ${invertColumns ? "columnsInverted" : ""}`}>
+    <img src={imageUrl} alt="" />
+    <h3>{title}</h3>
+    <p>
+        {descriptionHtml}
+    </p>
+    <ul class="projectDescription">
+        {
+            bulletPointsHtml.map(point => 
+                <li>
+                    {point}
+                </li>
+            )
+        }
+    </ul>
+    <ul class="projectActions">
+        {
+            actions.map((action) => (
+                <li>
+                    <ProjectButton
+                        imageUrl={action.imageUrl}
+                        title={action.title}
+                        destinationUrl={action.destinationUrl}
+                    />
+                </li>
+            ))
+        }
+    </ul>
+</div>
