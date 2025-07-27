@@ -1,6 +1,6 @@
 #!/bin/sh
 
-seat -e;
+set -e;
 set -x;
 
 nix build;
