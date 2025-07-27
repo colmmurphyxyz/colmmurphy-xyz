@@ -1,37 +1,50 @@
 {
-  description = "A web development project using Astro, React, and TypeScript";
+  description = "AstroJS static site";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-
+        pkgs = import nixpkgs { inherit system; };
         nodejs = pkgs.nodejs_20;
-
       in {
         devShells.default = pkgs.mkShell {
+          name = "astro-dev-shell";
+          
           buildInputs = [
             nodejs
+            pkgs.git
             pkgs.nodePackages.npm
           ];
-
+          
           shellHook = ''
-            echo "🚀 Web Dev Shell with Astro + React + TypeScript"
-
-            # Optional: install dependencies if node_modules doesn't exist
-            if [ ! -d node_modules ]; then
-              echo "📦 Installing npm dependencies..."
-              npm install
-            fi
+            echo "activated";
           '';
         };
-      }
-    );
+
+        packages.default = pkgs.buildNpmPackage {
+          name = "colmmurphy-xyz-frontend";
+          
+          buildInputs = [
+            nodejs
+          ];
+          
+          src = self;
+
+          npmDeps = pkgs.importNpmLock {
+            npmRoot = ./.;
+          };
+          
+          npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+
+          installPhase = ''
+            mkdir $out;
+            cp -r dist/* $out;
+          '';
+        };
+      });
 }
