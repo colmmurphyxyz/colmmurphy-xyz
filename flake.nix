@@ -31,6 +31,7 @@
           
           buildInputs = [
             nodejs
+            pkgs.nodePackages.npm
           ];
           
           src = self;
@@ -43,7 +44,8 @@
 
           installPhase = ''
             mkdir $out;
-            cp -r dist/* $out;
+            cp -r dist/ $out/;
+            cp -r node_modules/ $out/;
           '';
         };
       });
