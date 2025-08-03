@@ -30,6 +30,10 @@ const coverImage = track.album.images[0];
         margin: 0 auto;
         border-radius: 8px;
         pointer-events: none;
+
+        /* Hide alt text until image loaded */
+        color: var(--placeholder-background-color);
+        background-color: var(--placeholder-background-color);
     }
 
     .spotifyTrackCard > div > h3,
@@ -47,11 +51,6 @@ const coverImage = track.album.images[0];
         right: 6px;
         color: var(--light-gray);
         font-size: 0.8em;
-    }
-
-    .spotifyTrackCard > img {
-        color: var(--placeholder-background-color);
-        background-color: var(--placeholder-background-color);
     }
 
     .spotifyTrackCard > img.loaded {
