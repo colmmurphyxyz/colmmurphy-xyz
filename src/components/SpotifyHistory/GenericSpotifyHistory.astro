@@ -1,10 +1,5 @@
 ---
-export const prerender = false;
-import { getCurrentAndRecentTracks } from "../../api/api";
 import GenericSpotifyTrackCard from "./GenericSpotifyTrackCard.astro";
-import SpotifyTrackCard from "./SpotifyTrackCard.astro";
-
-const history = await getCurrentAndRecentTracks(20)
 ---
 
 <style>
@@ -31,15 +26,9 @@ const history = await getCurrentAndRecentTracks(20)
 <h2>What I've been listening to</h2>
 <ul id="spotifyHistory">
     {
-        history.map((playHistory) => (
+        [0, 0, 0, 0].map(_ => (
             <li>
-                <SpotifyTrackCard
-                    server:defer
-                    track={playHistory.track}
-                    playedAt={playHistory.playedAt}
-                >
-                    <GenericSpotifyTrackCard slot="fallback" />
-                </SpotifyTrackCard>
+                <GenericSpotifyTrackCard/>
             </li>
         ))
     }

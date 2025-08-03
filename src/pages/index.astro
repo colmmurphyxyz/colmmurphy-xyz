@@ -5,6 +5,7 @@ import QuickLinksList from '../components/QuickLinks/QuickLinksList.astro';
 import ProjectsList from '../components/Projects/ProjectsList.astro';
 import Footer from '../components/Footer/Footer.astro';
 import SpotifyHistory from '../components/SpotifyHistory/SpotifyHistory.astro';
+import GenericSpotifyHistory from '../components/SpotifyHistory/GenericSpotifyHistory.astro';
 ---
 
 <Layout>
@@ -12,7 +13,9 @@ import SpotifyHistory from '../components/SpotifyHistory/SpotifyHistory.astro';
 	<QuickLinksList />
 	<hr />
 	<!-- <SpotifyHistory client:visible /> -->
-	<SpotifyHistory />
+	<SpotifyHistory server:defer>
+		<GenericSpotifyHistory slot="fallback" />
+	</SpotifyHistory>
 	<hr />
 	<h2>Projects I've worked on</h2>
 	<hr />
