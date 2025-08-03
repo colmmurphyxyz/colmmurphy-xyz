@@ -1,0 +1,47 @@
+---
+import { getCurrentAndRecentTracks } from "../../api/api";
+import GenericSpotifyTrackCard from "./GenericSpotifyTrackCard.astro";
+import SpotifyTrackCard from "./SpotifyTrackCard.astro";
+
+export const prerender = false;
+
+const history = await getCurrentAndRecentTracks(20)
+---
+
+<style>
+    h2 {
+        color: var(--light-text-color);
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    ul#spotifyHistory {
+        width: calc(100% - 16px);
+        margin: 0 auto;
+
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+        white-space: nowrap;
+
+        padding-left: unset;
+    }
+</style>
+
+<h2>What I've been listening to</h2>
+<ul id="spotifyHistory">
+    {
+        history.map((playHistory) => (
+            <li>
+                <SpotifyTrackCard
+                    server:defer
+                    track={playHistory.track}
+                    playedAt={playHistory.playedAt}
+                >
+                    <GenericSpotifyTrackCard slot="fallback" />
+                </SpotifyTrackCard>
+            </li>
+        ))
+    }
+</ul>

@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import headshot from "../../../public/img/headshot.png";
+---
+
+<style>
+    .spotifyTrackCard {
+        position: relative;
+        width: 250px;
+        margin: 0.5em;
+        padding-top: 0.9em;
+        border-radius: 8px;
+        background-color: var(--light-background-color);
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .spotifyTrackCard > div.placeholder {
+        margin: 0 auto;
+        border-radius: 8px;
+        width: 120px;
+        height: 120px;
+        background-color: var(--dark-background-color);
+        pointer-events: none;
+    }
+
+    .spotifyTrackCard > div > h3,
+    .spotifyTrackCard > div > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        padding: 0 1ch;
+    }
+
+    .spotifyTrackCard > p {
+        position: absolute;
+        top: -4px;
+        right: 6px;
+        color: var(--light-gray);
+        font-size: 0.8em;
+    }
+</style>
+
+<div class="spotifyTrackCard">
+    <div class="placeholder" />
+    <div>
+        <h3>...</h3>
+        <p>...</p>
+    </div>
+    <p>...</p>
+</div>

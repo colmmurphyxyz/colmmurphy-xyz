@@ -1,0 +1,82 @@
+---
+import { Track } from "../../api/types";
+import { timeAgo } from "./time-formatting";
+
+export const prerender = false;
+
+const getCoverAlt = (track: Track): string =>
+    `Cover art for ${track.name} by ${track.artists[0].name}`;
+
+const track: Track = Astro.props.track;
+const playedAt: string = Astro.props.playedAt;
+
+const coverImage = track.album.images[0];
+---
+
+<style>
+    .spotifyTrackCard {
+        position: relative;
+        width: 250px;
+        margin: 0.5em;
+        padding-top: 0.9em;
+        border-radius: 8px;
+        background-color: var(--light-background-color);
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .spotifyTrackCard > img {
+        margin: 0 auto;
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    .spotifyTrackCard > div > h3,
+    .spotifyTrackCard > div > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        padding: 0 1ch;
+    }
+
+    .spotifyTrackCard > p {
+        position: absolute;
+        top: -4px;
+        right: 6px;
+        color: var(--light-gray);
+        font-size: 0.8em;
+    }
+
+    .spotifyTrackCard > img {
+        color: var(--dark-background-color);
+        background-color: var(--dark-background-color);
+    }
+
+    .spotifyTrackCard > img.loaded {
+        visibility: visible;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.spotifyTrackCard > img').forEach((img) => {
+        img.addEventListener('load', () => {
+            img.classList.add('loaded');
+        });
+    })
+</script>
+
+<div class="spotifyTrackCard">
+    <img
+        src={coverImage.url}
+        width="120"
+        height="120"
+        alt={getCoverAlt(track)}
+    />
+    <div>
+        <h3>{track.artists[0].name}</h3>
+        <p>{track.name}</p>
+    </div>
+    <p>{playedAt === "" ? "now" : timeAgo(Date.parse(playedAt))}</p>
+</div>
