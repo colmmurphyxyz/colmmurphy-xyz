@@ -4,7 +4,7 @@ import Header from '../components/Header/Header.astro'
 import QuickLinksList from '../components/QuickLinks/QuickLinksList.astro';
 import ProjectsList from '../components/Projects/ProjectsList.astro';
 import Footer from '../components/Footer/Footer.astro';
-import { SpotifyHistory } from '../components/SpotifyHistory/SpotifyHistory';
+import SpotifyHistory from '../components/SpotifyHistory/SpotifyHistory.astro';
 ---
 
 <Layout>
@@ -12,7 +12,7 @@ import { SpotifyHistory } from '../components/SpotifyHistory/SpotifyHistory';
 	<QuickLinksList />
 	<hr />
 	<!-- <SpotifyHistory client:visible /> -->
-	 <SpotifyHistory client:load />
+	<SpotifyHistory />
 	<hr />
 	<h2>Projects I've worked on</h2>
 	<hr />
