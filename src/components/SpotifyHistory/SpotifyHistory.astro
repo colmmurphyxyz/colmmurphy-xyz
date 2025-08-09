@@ -44,24 +44,55 @@ const history = await getCurrentAndRecentTracks(20)
     ul::-webkit-scrollbar-track {
         background-color: var(--dark-background-color);
     }
+
+    .scroll-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fade {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none; /* let mouse clicks pass through */
+        z-index: 10;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .fade-left {
+        left: 0;
+        background: linear-gradient(to right, #000, transparent);
+    }
+
+    .fade-right {
+        right: 0;
+        background: linear-gradient(to left, #000, transparent);
+    }
+
 </style>
 
 <h2>What I've been listening to</h2>
-<ul id="spotifyHistory">
-    {
-        history.map(({track, playedAt}) => (
-            <li>
-                <SpotifyTrackCard
-                    track={track}
-                    trackName={track.name}
-                    artistName={track.artists[0].name}
-                    coverImageUrl={track.album.images[0].url}
-                    playedAt={playedAt}
-                />
-            </li>
-        ))
-    }
-</ul>
+<div class="scroll-wrapper">
+    <ul id="spotifyHistory">
+            {
+            history.map(({track, playedAt}) => (
+                <li>
+                    <SpotifyTrackCard
+                        track={track}
+                        trackName={track.name}
+                        artistName={track.artists[0].name}
+                        coverImageUrl={track.album.images[0].url}
+                        playedAt={playedAt}
+                    />
+                </li>
+            ))
+        }
+    </ul>
+    <div class="fade fade-left" />
+    <div class="fade fade-right" />
+</div>
 
 <script>
     let mouseDown = false;
@@ -92,4 +123,21 @@ const history = await getCurrentAndRecentTracks(20)
     slider.addEventListener('mousedown', startDragging, false);
     slider.addEventListener('mouseup', stopDragging, false);
     slider.addEventListener('mouseleave', stopDragging, false);
+
+    const container = document.getElementById('spotifyHistory') as HTMLUListElement;
+    const fadeLeft = document.querySelector('.fade-left')! as HTMLDivElement;
+    const fadeRight = document.querySelector('.fade-right')! as HTMLDivElement  ;
+
+    function updateFades() {
+        const maxScroll = container.scrollWidth - container.clientWidth;
+    
+        fadeLeft.style.opacity = container.scrollLeft > 0 ? '1' : '0';
+        fadeRight.style.opacity = container.scrollLeft < maxScroll ? '1' : '0';
+    }
+
+    container.addEventListener('scroll', updateFades);
+    window.addEventListener('resize', updateFades);
+
+    // Run on load
+    updateFades();
 </script>
