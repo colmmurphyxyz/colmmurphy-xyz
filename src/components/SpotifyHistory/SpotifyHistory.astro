@@ -25,6 +25,25 @@ const history = await getCurrentAndRecentTracks(20)
 
         padding-left: unset;
     }
+
+    /* Custom scrollbar */
+    /* Not supported on firefox, but the default scrollbar looks fine as-is */
+    ul::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        background: #777;
+    }
+
+    ul::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    ul::-webkit-scrollbar-track {
+        background-color: var(--dark-background-color);
+    }
 </style>
 
 <h2>What I've been listening to</h2>
@@ -43,3 +62,34 @@ const history = await getCurrentAndRecentTracks(20)
         ))
     }
 </ul>
+
+<script>
+    let mouseDown = false;
+    let startX: number = 0;
+    let scrollLeft: number = 0;
+    const slider: HTMLUListElement = document.getElementById("spotifyHistory")! as HTMLUListElement;
+
+    const startDragging = (e: MouseEvent) => {
+        mouseDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    }
+
+    const stopDragging = (e: MouseEvent) => {
+        mouseDown = false;
+    }
+
+    const move = (e: MouseEvent) => {
+        e.preventDefault();
+        if (!mouseDown) return;
+        const x = e.pageX - slider.offsetLeft;
+        const scroll = x - startX;
+        slider.scrollLeft = scrollLeft - scroll
+    }
+
+    // Add the event listeners
+    slider.addEventListener('mousemove', move, false);
+    slider.addEventListener('mousedown', startDragging, false);
+    slider.addEventListener('mouseup', stopDragging, false);
+    slider.addEventListener('mouseleave', stopDragging, false);
+</script>
