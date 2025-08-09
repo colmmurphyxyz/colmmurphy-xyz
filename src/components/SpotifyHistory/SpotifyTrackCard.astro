@@ -1,15 +1,14 @@
 ---
 export const prerender = false;
-import { Track } from "../../api/types";
 import { timeAgo } from "./time-formatting";
 
-const getCoverAlt = (track: Track): string =>
-    `Cover art for ${track.name} by ${track.artists[0].name}`;
+const getCoverAlt = (name: string, artist: string): string =>
+    `Cover art for ${name} by ${artist}`;
 
-const track: Track = Astro.props.track;
+const trackName: string = Astro.props.trackName;
+const artistName: string = Astro.props.artistName;
+const coverImageUrl: string = Astro.props.coverImageUrl;
 const playedAt: string = Astro.props.playedAt;
-
-const coverImage = track.album.images[0];
 ---
 
 <style>
@@ -67,14 +66,14 @@ const coverImage = track.album.images[0];
 
 <div class="spotifyTrackCard">
     <img
-        src={coverImage.url}
+        src={coverImageUrl}
         width="120"
         height="120"
-        alt={getCoverAlt(track)}
+        alt={getCoverAlt(trackName, artistName)}
     />
     <div>
-        <h3>{track.artists[0].name}</h3>
-        <p>{track.name}</p>
+        <h3>{artistName}</h3>
+        <p>{trackName}</p>
     </div>
     <p>{playedAt === "" ? "now" : timeAgo(Date.parse(playedAt))}</p>
 </div>
