@@ -3,7 +3,17 @@ export const prerender = false;
 import { getCurrentAndRecentTracks } from "../../api/api";
 import SpotifyTrackCard from "./SpotifyTrackCard.astro";
 
-const history = await getCurrentAndRecentTracks(20)
+function filterRepeats<T>(arr: T[], eq: (a: T, b: T) => boolean ): T[] {
+    let filtered: T[] = [];
+    for (const item of arr) {
+        if (filtered.length === 0 || !eq(item, filtered[filtered.length - 1])) {
+            filtered.push(item);
+        }
+    }
+    return filtered;
+}
+const tracks = await getCurrentAndRecentTracks(20);
+const history = filterRepeats(tracks, (a, b) => a.track.id === b.track.id);
 ---
 
 <style>
