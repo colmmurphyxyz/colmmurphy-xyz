@@ -25,7 +25,7 @@ const { icon, iconAlt, title, url } = Astro.props;
     @property --ql-border-color {
         syntax: "<color>";
         inherits: false;
-        initial-value: var(--accent-primary-06)
+        initial-value: var(--accent-primary-06);
     }
 
     .quickLink {
@@ -34,6 +34,7 @@ const { icon, iconAlt, title, url } = Astro.props;
         --ql-border-color: var(--accent-primary-06);
         width: 250px;
         height: 100px;
+        margin: 10px;
         padding: 10px;
         background:
             linear-gradient(
@@ -70,6 +71,12 @@ const { icon, iconAlt, title, url } = Astro.props;
             --ql-border-color 0.3s linear;
     }
 
+    .quickLink {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .quickLink:hover {
         --ql-border-length: 48px;
         --ql-border-width: 6px;
@@ -81,9 +88,10 @@ const { icon, iconAlt, title, url } = Astro.props;
         width: 100%;
         height: 100%;
         line-height: 100%;
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        align-items: center;
         justify-content: space-between;
         color: var(--light-text-color);
     }
@@ -96,5 +104,6 @@ const { icon, iconAlt, title, url } = Astro.props;
 
     .quickLink h3 {
         padding-right: 1em;
+        text-align: end;
     }
 </style>
