@@ -4,23 +4,76 @@ const { icon, iconAlt, title, url } = Astro.props;
 
 <li class="quickLink">
     <a href={url}>
-        <img src={icon} alt={iconAlt} loading="eager"/>
+        <img src={icon} alt={iconAlt} loading="eager" />
         <h3>{title}</h3>
     </a>
 </li>
 
 <style>
+    @property --ql-border-length {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 32px;
+    }
+
+    @property --ql-border-width {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 4px;
+    }
+
+    @property --ql-border-color {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: var(--accent-primary-06)
+    }
+
     .quickLink {
-        background-color: var(--light-background-color);
-        border-radius: 20px;
-        border: 2px solid rgba(0, 0, 0, 0.9);
-        transition: all 0.11s ease-in-out;
+        --ql-border-length: 32px;
+        --ql-border-width: 4px;
+        --ql-border-color: var(--accent-primary-06);
         width: 250px;
-        margin: 0.8em;
+        height: 100px;
+        padding: 10px;
+        background:
+            linear-gradient(
+                    var(--ql-border-color) var(--ql-border-length),
+                    transparent 0 calc(100% - var(--ql-border-length)),
+                    var(--ql-border-color) 0
+                )
+                0 0 / var(--ql-border-width) 100%,
+            linear-gradient(
+                    var(--ql-border-color) var(--ql-border-length),
+                    transparent 0 calc(100% - var(--ql-border-length)),
+                    var(--ql-border-color) 0
+                )
+                100% 0 / var(--ql-border-width) 100%,
+            linear-gradient(
+                    to right,
+                    var(--ql-border-color) var(--ql-border-length),
+                    transparent 0 calc(100% - var(--ql-border-length)),
+                    var(--ql-border-color) 0
+                )
+                0 0 / 100% var(--ql-border-width),
+            linear-gradient(
+                    to right,
+                    var(--ql-border-color) var(--ql-border-length),
+                    transparent 0 calc(100% - var(--ql-border-length)),
+                    var(--ql-border-color) 0
+                )
+                0 100% / 100% var(--ql-border-width);
+        background-repeat: no-repeat;
+
+        transition:
+            --ql-border-length 0.3s ease-in-out,
+            --ql-border-width 0.3s ease-in-out,
+            --ql-border-color 0.3s linear;
     }
 
     .quickLink:hover {
-        transform: translateY(-8px);
+        --ql-border-length: 48px;
+        --ql-border-width: 6px;
+        --ql-border-color: var(--accent-primary-04);
     }
 
     .quickLink > a {
@@ -32,7 +85,7 @@ const { icon, iconAlt, title, url } = Astro.props;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
-        color: var(--dark-text-color);
+        color: var(--light-text-color);
     }
 
     .quickLink img {
