@@ -5,18 +5,68 @@ const destinationUrl: string = Astro.props.destinationUrl;
 ---
 
 <style>
+
+    @property --pb-border-length {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 16px;
+    }
+
+    @property --pb-border-width {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 4px;
+    }
+
+    @property --pb-border-color {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: var(--accent-primary-06);
+    }
+
     .projectButton {
-        background-color: var(--button-background-color);
-        box-shadow:
-            rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-            rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
-            rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
-        border-radius: 12px;
+        --pb-border-length: 16px;
+        --pb-border-width: 4px;
+        --pb-border-color: var(--accent-primary-06);
+        background:
+            linear-gradient(
+                    var(--pb-border-color) var(--pb-border-length),
+                    transparent 0 calc(100% - var(--pb-border-length)),
+                    var(--pb-border-color) 0
+                )
+                0 0 / var(--pb-border-width) 100%,
+            linear-gradient(
+                    var(--pb-border-color) var(--pb-border-length),
+                    transparent 0 calc(100% - var(--pb-border-length)),
+                    var(--pb-border-color) 0
+                )
+                100% 0 / var(--pb-border-width) 100%,
+            linear-gradient(
+                    to right,
+                    var(--pb-border-color) var(--pb-border-length),
+                    transparent 0 calc(100% - var(--pb-border-length)),
+                    var(--pb-border-color) 0
+                )
+                0 0 / 100% var(--pb-border-width),
+            linear-gradient(
+                    to right,
+                    var(--pb-border-color) var(--pb-border-length),
+                    transparent 0 calc(100% - var(--pb-border-length)),
+                    var(--pb-border-color) 0
+                )
+                0 100% / 100% var(--pb-border-width);
+        background-repeat: no-repeat;
+
+        transition:
+            --pb-border-length 0.3s ease-in-out,
+            --pb-border-width 0.3s ease-in-out,
+            --pb-border-color 0.3s linear;
     }
 
     .projectButton:hover {
-        transition: all 0.11s ease-in-out;
-        transform: translateY(-6px);
+        --pb-border-length: 24px;
+        --pb-border-width: 6px;
+        --pb-border-color: var(--accent-primary-04);
     }
 
     .projectButton > a {
