@@ -1,3 +1,7 @@
+---
+import Footer from "../components/Footer/Footer.astro";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,22 +10,31 @@
 		<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 
-		<meta name="theme-color" content="#000000">
-    	<meta name="description" content="Colm Murphy | Computer Science Student @ University College Cork | Software Engineer">
-    	<meta name="keywords" content="colm murphy, software, computer science">
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="description"
+			content="Colm Murphy | Computer Science Student @ University College Cork | Software Engineer"
+		/>
+		<meta
+			name="keywords"
+			content="colm murphy, software, computer science"
+		/>
 
-		<meta property="og:title" content="Colm Murphy">
-    	<meta property="og:description" content="Colm Murphy | Computer Science Student @ University College Cork | Software Engineer">
-    	<meta property="og:image" content="/img/headshot.png">
-    	<meta property="og:image:width" content="916">
-    	<meta property="og:image:height" content="829">
-    	<meta property="og:url" content="https://colmmurphy.xyz">
-    	<meta property="og:locale" content="en_IE">
-    	<meta property="og:type" content="website">
-    	<meta property="og:site_name" content="Colm Murphy">
+		<meta property="og:title" content="Colm Murphy" />
+		<meta
+			property="og:description"
+			content="Colm Murphy | Computer Science Student @ University College Cork | Software Engineer"
+		/>
+		<meta property="og:image" content="/img/headshot.png" />
+		<meta property="og:image:width" content="916" />
+		<meta property="og:image:height" content="829" />
+		<meta property="og:url" content="https://colmmurphy.xyz" />
+		<meta property="og:locale" content="en_IE" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Colm Murphy" />
 
-    	<meta property="twitter:card" content="summary_large_image">
-    	<meta property="twitter:image" content="/img/headshot.png">
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:image" content="/img/headshot.png" />
 
 		<title>Colm Murphy</title>
 	</head>
@@ -29,6 +42,7 @@
 		<div class="bg"></div>
 		<div class="content">
 			<slot />
+			<Footer />
 		</div>
 	</body>
 </html>
@@ -36,26 +50,28 @@
 <style>
 	:root {
 		font-size: 1.25rem;
-		--light-background-color: #F8F9FA;
-		--light-text-color: #E0E0E0;
-		--dark-background-color: #201E1D;;
+		--light-background-color: #f8f9fa;
+		--light-text-color: #e0e0e0;
+		--dark-background-color: #201e1d;
 		--dark-text-color: #212529;
-		--light-gray: #ADADAD;
+		--light-gray: #adadad;
 		--placeholder-background-color: #343432;
 	}
-	html, body {
+	html,
+	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    		sans-serif;
-  		-webkit-font-smoothing: antialiased;
-  		-moz-osx-font-smoothing: grayscale;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+			"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+			"Helvetica Neue", sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	code {
-		font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+		font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+			monospace;
 	}
 
 	.bg {
