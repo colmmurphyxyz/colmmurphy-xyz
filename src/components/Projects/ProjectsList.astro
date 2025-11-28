@@ -1,119 +1,5 @@
 ---
 import Project from "./Project.astro";
-import { ProjectButtonProps } from "./ProjectButton/project-button-props";
-
-type ProjectProps = {
-    imageUrl: string;
-    title: string;
-    actions: ProjectButtonProps[];
-};
-
-const projects: ProjectProps[] = [
-    {
-        imageUrl: "/img/pcc_example.png",
-        title: "Pseudo-Code Compiler",
-        description:
-            "My Final-Year Project was to develop a runtime environment for pseudocode, as defined in " +
-            '<a href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/">Introduction To Algorithms</a> ' +
-            "by <em>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest</em> and <i>Clifford Stein</i>.",
-        bulletPoints: [
-            "Tokenises, parses, transpiles pseudocode to executable Python code.",
-            "Provides a graphical interface to support interactive execution of pseudocode.",
-            "Accompanied by a standard library with implementations of various data structures.",
-        ],
-        actions: [
-            {
-                imageUrl: "/img/github.svg",
-                title: "Source Code",
-                destinationUrl:
-                    "https://github.com/colmmurphyxyz/pseudo-code-compiler",
-            },
-            {
-                imageUrl: "/img/icons/docs.svg",
-                title: "Project Report",
-                destinationUrl: "/report_colm_murphy.pdf",
-            },
-        ],
-    },
-    {
-        imageUrl: "/img/sandsoforisis.png",
-        title: "Sands of Orisis",
-        description:
-            "A top-down Real-Time Strategy game developed in Godot 4 for a university group project",
-        bulletPoints: [
-            "Developed in eight weeks by a team of 4 students.",
-            "Real-time peer-to-peer multiplayer.",
-            "Compatible with Windows, Linux and macOS systems.",
-            "Event-driven architecture to handle network replication and synchronisation.",
-        ],
-        actions: [
-            {
-                imageUrl: "/img/github.svg",
-                title: "Source Code",
-                destinationUrl: "https://github.com",
-            },
-            {
-                imageUrl: "/img/github.svg",
-                title: "Ben Shorten",
-                destinationUrl: "https://github.com/benshorten72",
-            },
-            {
-                imageUrl: "/img/github.svg",
-                title: "David Wilson",
-                destinationUrl: "https://github.com/Szazlo",
-            },
-            {
-                imageUrl: "/img/github.svg",
-                title: "Darragh Murphy",
-                destinationUrl: "https://github.com/Durph21",
-            },
-        ],
-    },
-    {
-        imageUrl: "/img/react.svg",
-        title: "colmmurphy.xyz",
-        description: "My Personal Website.",
-        bulletPoints: [
-            "Developed with Astro, React and TypeScript.",
-            "Hosted on GitHub Pages.",
-            "Continuous Integration via GitHub Actions.",
-        ],
-        actions: [
-            {
-                imageUrl: "/img/github.svg",
-                title: "Source Code",
-                destinationUrl:
-                    "https://github.com/colmmurphyxyz/colmmurphyxyz.github.io",
-            },
-        ],
-    },
-    {
-        imageUrl: "/img/klaassify_screenshot.png",
-        title: "Klaassify",
-        description:
-            "JavaFX desktop Application to visualise your music taste in a novel format.",
-        bulletPoints: [
-            "Integrates with the Spotify API to aggregate your listening history and retrieve your favourite artists.",
-            "Uses an ExpressJS server to communicate with Spotify without leaking API credentials.",
-            "Represents your favourites as vertices of a graph, with edges connecting similar artists.",
-            "Implements force simulation algorithms to optimally render a graph to the user.",
-        ],
-        actions: [
-            {
-                imageUrl: "/img/github.svg",
-                title: "Server",
-                destinationUrl:
-                    "https://github.com/benshorten72/cs3500-team36-server",
-            },
-            {
-                imageUrl: "/img/github.svg",
-                title: "Client",
-                destinationUrl:
-                    "https://github.com/colmmurphyxyz/cs3500-team36-client",
-            },
-        ],
-    },
-];
 ---
 
 <style>
@@ -134,7 +20,6 @@ const projects: ProjectProps[] = [
             "gridImage gridPoints"
             "gridImage gridActions";
         min-width: 100%;
-        --button-background-color: rgb(25, 118, 210);
     }
 
     .columnsInverted {
@@ -229,27 +114,24 @@ const projects: ProjectProps[] = [
 
 <div id="projectsList">
     <ul>
-        <!-- {
-            projects.map((project, index) => (
-                <li>
-                    <Project
-                        imageUrl={project.imageUrl}
-                        title={project.title}
-                        description={project.description}
-                        bulletPoints={project.bulletPoints}
-                        projectButtonProps={project.actions}
-                        invertColumns={index % 2 == 0}
-                    />
-                    <hr />
-                </li>
-            ))
-        } -->
         <Project
             title="Pseudo-Code Compiler"
-            imageUrl="/img/pcc_example.png"
-            actions={[]}
-            invertColumns={false}
-        />
+            imageUrl="/img/pcc_example_2.png"
+            actions={[
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Source Code",
+                    destinationUrl:
+                        "https://github.com/colmmurphyxyz/pseudo-code-compiler",
+                },
+                {
+                    imageUrl: "/img/icons/docs.svg",
+                    title: "Project Report",
+                    destinationUrl: "/report_colm_murphy.pdf",
+                },
+            ]}
+            invertColumns={true}
+        >
         <p>
             My FInal-Year Project was to develop a runtime environment for
             pseudocode, as defined in
@@ -274,14 +156,40 @@ const projects: ProjectProps[] = [
                 Accompanied by a standard library of common data structures.
             </li>
         </ul>
+        </Project>
 
         <Project
             title="Sands of Orisis"
             imageUrl="/img/sandsoforisis.png"
-            actions={[]}
-            invertColumns={true}
+            actions={[
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Source Code",
+                    destinationUrl:
+                        "https://github.com/colmmurphyxyz/CS3305-2024-Team-2",
+                },
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Ben Shorten",
+                    destinationUrl: "https://github.com/benshorten72",
+                },
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "David Wilson",
+                    destinationUrl: "https://github.com/Szazlo",
+                },
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Darragh Murphy",
+                    destinationUrl: "https://github.com/benshorten72",
+                },
+            ]}
+            invertColumns={false}
         >
-            <p>A top-down real-time strategy game developed in Godot 4 for a university group project.</p>
+            <p>
+                A top-down real-time strategy game developed in Godot 4 for a
+                university group project.
+            </p>
             <ul>
                 <li>Developed in eight weeks by a team of four students.</li>
                 <li>Real-time peer-to-peer networked multiplayer.</li>
@@ -293,24 +201,51 @@ const projects: ProjectProps[] = [
             title="colmmurphy.xyz"
             imageUrl="/img/astro.png"
             actions={[]}
-            invertColumns={false}
+            invertColumns={true}
         >
-            <p>My personal website (this one). Developed using AstroJS, Spring Boot and Kotlin</p>
+            <p>
+                My personal website (this one). Developed using AstroJS, Spring
+                Boot and Kotlin
+            </p>
         </Project>
 
         <Project
             title="Klaassify"
             imageUrl="/img/klaassify_screenshot.png"
-            actions={[]}
-            invertColumns={true}
+            actions={[
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Server",
+                    destinationUrl:
+                        "https://github.com/benshorten72/cs3500-team36-server",
+                },
+                {
+                    imageUrl: "/img/github.svg",
+                    title: "Client",
+                    destinationUrl:
+                        "https://github.com/colmmurphyxyz/cs3500-team36-client",
+                },
+            ]}
+            invertColumns={false}
         >
-            <p>JavaFX desktop application to visualise your music taste in a novel format.
-                Your listening habits are represented as a graph of artists, with edges connecting similar artists.
+            <p>
+                JavaFX desktop application to visualise your music taste in a
+                novel format. Your listening habits are represented as a graph
+                of artists, with edges connecting similar artists.
             </p>
             <ul>
-                <li>Integrates with Spotify's API to aggregate your listening history.</li>
-                <li>Uses an ExpressJS server to communicate with Spotify without leaking API credentials.</li>
-                <li>Implements force simulation algorithms to optimally render a graph to the user.</li>
+                <li>
+                    Integrates with Spotify's API to aggregate your listening
+                    history.
+                </li>
+                <li>
+                    Uses an ExpressJS server to communicate with Spotify without
+                    leaking API credentials.
+                </li>
+                <li>
+                    Implements force simulation algorithms to optimally render a
+                    graph to the user.
+                </li>
             </ul>
         </Project>
     </ul>
