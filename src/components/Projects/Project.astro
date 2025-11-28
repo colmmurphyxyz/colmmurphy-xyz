@@ -1,18 +1,11 @@
 ---
-import { parse } from 'node-html-parser';
-
 import { ProjectButtonProps } from "./ProjectButton/project-button-props";
 import ProjectButton from "./ProjectButton/ProjectButton.astro";
 
 const imageUrl: string = Astro.props.imageUrl;
 const title: string = Astro.props.title;
-const description: string = Astro.props.description;
-const bulletPoints: string[] = Astro.props.bulletPoints;
-const actions: ProjectButtonProps[] = Astro.props.projectButtonProps;
+const actions: ProjectButtonProps[] = Astro.props.actions ?? [];
 const invertColumns: boolean | undefined = Astro.props.invertColumns;
-
-const bulletPointsHtml = bulletPoints.map(it => parse(it))
-const descriptionHtml = parse(description);
 ---
 
 <style>
@@ -30,7 +23,6 @@ const descriptionHtml = parse(description);
         grid-template-areas:
             "gridImage gridTitle"
             "gridImage gridDescription"
-            "gridImage gridPoints"
             "gridImage gridActions";
         min-width: 100%;
         --button-background-color: rgb(25, 118, 210);
@@ -40,7 +32,6 @@ const descriptionHtml = parse(description);
         grid-template-areas:
             "gridTitle       gridImage "
             "gridDescription gridImage "
-            "gridPoints      gridImage "
             "gridActions     gridImage ";
     }
 
@@ -50,7 +41,6 @@ const descriptionHtml = parse(description);
                 "gridTitle"
                 "gridImage"
                 "gridDescription"
-                "gridPoints"
                 "gridActions";
         }
 
@@ -59,7 +49,6 @@ const descriptionHtml = parse(description);
                 "gridTitle"
                 "gridImage"
                 "gridDescription"
-                "gridPoints"
                 "gridActions";
         }
     }
@@ -89,6 +78,10 @@ const descriptionHtml = parse(description);
     .projectDescription {
         grid-area: gridPoints;
         color: var(--dark-text-color);
+    }
+
+    .project-body {
+        grid-area: gridDescription;
     }
 
     .projectDescription > li {
@@ -124,18 +117,9 @@ const descriptionHtml = parse(description);
 <div class={`project ${invertColumns ? "columnsInverted" : ""}`}>
     <img src={imageUrl} alt="" />
     <h3>{title}</h3>
-    <p>
-        {descriptionHtml}
-    </p>
-    <ul class="projectDescription">
-        {
-            bulletPointsHtml.map(point => 
-                <li>
-                    {point}
-                </li>
-            )
-        }
-    </ul>
+    <div class="project-body">
+        <slot />
+    </div>
     <ul class="projectActions">
         {
             actions.map((action) => (

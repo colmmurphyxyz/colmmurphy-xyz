@@ -5,8 +5,6 @@ import { ProjectButtonProps } from "./ProjectButton/project-button-props";
 type ProjectProps = {
     imageUrl: string;
     title: string;
-    description: string;
-    bulletPoints: string[];
     actions: ProjectButtonProps[];
 };
 
@@ -33,8 +31,7 @@ const projects: ProjectProps[] = [
             {
                 imageUrl: "/img/icons/docs.svg",
                 title: "Project Report",
-                destinationUrl:
-                "/report_colm_murphy.pdf",
+                destinationUrl: "/report_colm_murphy.pdf",
             },
         ],
     },
@@ -170,8 +167,8 @@ const projects: ProjectProps[] = [
 
     .project > img {
         grid-area: gridImage;
-        max-width: 100%;
-        height: 100%;
+        max-width: 600px;
+        max-height: 450px;
         object-fit: cover;
         border-radius: 12px;
         overflow: auto;
@@ -222,12 +219,17 @@ const projects: ProjectProps[] = [
         .projectActions > * {
             width: 100%;
         }
+
+        .project > img {
+            max-width: 400px;
+            max-height: 300px;
+        }
     }
 </style>
 
 <div id="projectsList">
     <ul>
-        {
+        <!-- {
             projects.map((project, index) => (
                 <li>
                     <Project
@@ -241,6 +243,75 @@ const projects: ProjectProps[] = [
                     <hr />
                 </li>
             ))
-        }
+        } -->
+        <Project
+            title="Pseudo-Code Compiler"
+            imageUrl="/img/pcc_example.png"
+            actions={[]}
+            invertColumns={false}
+        />
+        <p>
+            My FInal-Year Project was to develop a runtime environment for
+            pseudocode, as defined in
+            <a
+                href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
+                >Introduction To Algorithms</a
+            > by <em
+                >Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest</em
+            > and
+            <i>Clifford Stein</i>.
+        </p>
+        <ul>
+            <li>
+                Tokenises, parses, transpiles pseudocode to executable Python
+                code.
+            </li>
+            <li>
+                Provides a graphical interface to support interactive execution
+                of pseudocode.
+            </li>
+            <li>
+                Accompanied by a standard library of common data structures.
+            </li>
+        </ul>
+
+        <Project
+            title="Sands of Orisis"
+            imageUrl="/img/sandsoforisis.png"
+            actions={[]}
+            invertColumns={true}
+        >
+            <p>A top-down real-time strategy game developed in Godot 4 for a university group project.</p>
+            <ul>
+                <li>Developed in eight weeks by a team of four students.</li>
+                <li>Real-time peer-to-peer networked multiplayer.</li>
+                <li>Cross-compatible with Windows, Linux and macOS systems</li>
+            </ul>
+        </Project>
+
+        <Project
+            title="colmmurphy.xyz"
+            imageUrl="/img/astro.png"
+            actions={[]}
+            invertColumns={false}
+        >
+            <p>My personal website (this one). Developed using AstroJS, Spring Boot and Kotlin</p>
+        </Project>
+
+        <Project
+            title="Klaassify"
+            imageUrl="/img/klaassify_screenshot.png"
+            actions={[]}
+            invertColumns={true}
+        >
+            <p>JavaFX desktop application to visualise your music taste in a novel format.
+                Your listening habits are represented as a graph of artists, with edges connecting similar artists.
+            </p>
+            <ul>
+                <li>Integrates with Spotify's API to aggregate your listening history.</li>
+                <li>Uses an ExpressJS server to communicate with Spotify without leaking API credentials.</li>
+                <li>Implements force simulation algorithms to optimally render a graph to the user.</li>
+            </ul>
+        </Project>
     </ul>
 </div>
