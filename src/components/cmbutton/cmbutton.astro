@@ -10,8 +10,8 @@ export interface Props {
 }
 
 const { url } = Astro.props;
-const borderLength = Astro.props.borderColor ?? '32px'
-const borderWidth = Astro.props.borderColor ?? '4px'
+const borderLength = Astro.props.borderLength ?? '32px'
+const borderWidth = Astro.props.borderWidth ?? '4px'
 const borderColor = Astro.props.borderColor ?? 'var(--accent-primary-06)'
 
 const hoverBorderLength = Astro.props.hoverBorderLength ?? '48px'
@@ -79,17 +79,20 @@ const hoverBorderColor = Astro.props.hoverBorderColor ?? 'var(--accent-primary-0
     }
     
     .cm-button:hover {
+        cursor: pointer;
         --border-length: var(--hoverBorderLength);
         --border-width: var(--hoverBorderWidth);
         --border-color: var(--hoverBorderColor);
     }
 
     a {
+        display: block;
         text-decoration: none;
         color: inherit;
     }
 
     button {
+        cursor: inherit;
         border: none;
         background: none;
         width: 100%;
