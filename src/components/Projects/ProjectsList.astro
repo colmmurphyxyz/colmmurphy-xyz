@@ -2,20 +2,33 @@
 import Project from "./Project.astro";
 ---
 <style>
+
+    #projectsList > ul {
+        margin: 0;
+        padding: 0;
+    }
     p, ul, li {
         color: var(--light-gray);
     }
 
     @media only screen and (min-width: 1000px) {
-        p, ul {
-            padding-right: 1em;
+        p, li {
+            padding: 0 1em;
         }
+
+    }
+    
+    @media only screen and (max-width: 1000px) {
+        p {
+            padding: 0 4px;
+        }
+
     }
 </style>
 
 <div id="projectsList">
     <ul>
-        <Project
+        <Project class:list={["project"]}
             title="Pseudo-Code Compiler"
             imageUrl="/img/pcc_example_2.png"
             actions={[
