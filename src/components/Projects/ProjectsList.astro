@@ -1,113 +1,14 @@
 ---
 import Project from "./Project.astro";
 ---
-
 <style>
-    #projectsList {
-        padding: 0 1.5em;
-    }
-
-    #projectsList > ul {
-        list-style: none;
-        padding-left: unset;
-    }
-
-    .project {
-        display: grid;
-        grid-template-areas:
-            "gridImage gridTitle"
-            "gridImage gridDescription"
-            "gridImage gridPoints"
-            "gridImage gridActions";
-        min-width: 100%;
-    }
-
-    .columnsInverted {
-        grid-template-areas:
-            "gridTitle       gridImage "
-            "gridDescription gridImage "
-            "gridPoints      gridImage "
-            "gridActions     gridImage ";
-    }
-
-    @media only screen and (max-width: 1000px) {
-        .project {
-            grid-template-areas:
-                "gridTitle"
-                "gridImage"
-                "gridDescription"
-                "gridPoints"
-                "gridActions";
-        }
-
-        .columnsInverted {
-            grid-template-areas:
-                "gridTitle"
-                "gridImage"
-                "gridDescription"
-                "gridPoints"
-                "gridActions";
-        }
-    }
-
-    .project > img {
-        grid-area: gridImage;
-        max-width: 600px;
-        max-height: 450px;
-        object-fit: cover;
-        border-radius: 12px;
-        overflow: auto;
-    }
-
-    .project > h3 {
-        grid-area: gridTitle;
-        text-align: center;
-        color: var(--light-text-color);
-        font-size: 2rem;
-    }
-
-    .project > p {
-        grid-area: gridDescription;
-        padding: 1em;
+    p, ul, li {
         color: var(--light-gray);
     }
 
-    .projectDescription {
-        grid-area: gridPoints;
-        color: var(--dark-text-color);
-    }
-
-    .projectDescription > li {
-        padding: 0.5em 0;
-        color: var(--light-gray);
-    }
-
-    .projectActions {
-        grid-area: gridActions;
-        list-style-type: none;
-        padding-left: 0;
-        padding-right: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
-
-    .columnsInverted .projectActions {
-        justify-content: flex-start;
-    }
-
-    .projectActions > * {
-        padding: 0.5em;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .projectActions > * {
-            width: 100%;
-        }
-
-        .project > img {
-            max-width: 400px;
-            max-height: 300px;
+    @media only screen and (min-width: 1000px) {
+        p, ul {
+            padding-right: 1em;
         }
     }
 </style>
@@ -133,7 +34,7 @@ import Project from "./Project.astro";
             invertColumns={true}
         >
         <p>
-            My FInal-Year Project was to develop a runtime environment for
+            My Final-Year Project was to develop a runtime environment for
             pseudocode, as defined in
             <a
                 href="https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/"
@@ -198,18 +99,6 @@ import Project from "./Project.astro";
         </Project>
 
         <Project
-            title="colmmurphy.xyz"
-            imageUrl="/img/astro.png"
-            actions={[]}
-            invertColumns={true}
-        >
-            <p>
-                My personal website (this one). Developed using AstroJS, Spring
-                Boot and Kotlin
-            </p>
-        </Project>
-
-        <Project
             title="Klaassify"
             imageUrl="/img/klaassify_screenshot.png"
             actions={[
@@ -226,7 +115,7 @@ import Project from "./Project.astro";
                         "https://github.com/colmmurphyxyz/cs3500-team36-client",
                 },
             ]}
-            invertColumns={false}
+            invertColumns={true}
         >
             <p>
                 JavaFX desktop application to visualise your music taste in a
