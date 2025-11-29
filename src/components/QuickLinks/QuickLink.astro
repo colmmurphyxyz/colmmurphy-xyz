@@ -1,109 +1,49 @@
 ---
+import CmButton from "../cmbutton/cmbutton.astro";
+export interface Props {
+    icon: string;
+    iconAlt: string;
+    title: string;
+    url: string;
+}
+
 const { icon, iconAlt, title, url } = Astro.props;
 ---
 
-<li class="quickLink">
-    <a href={url}>
-        <img src={icon} alt={iconAlt} loading="eager" />
-        <h3>{title}</h3>
-    </a>
+<li class="quicklink">
+    <CmButton url={url} borderLength="24px" hoverBorderLength="30px">
+        <div>
+            <img src={icon} alt={iconAlt} loading="eager" />
+            <h2>{title}</h2>
+        </div>
+    </CmButton>
 </li>
 
 <style>
-    @property --ql-border-length {
-        syntax: "<length>";
-        inherits: false;
-        initial-value: 32px;
-    }
-
-    @property --ql-border-width {
-        syntax: "<length>";
-        inherits: false;
-        initial-value: 4px;
-    }
-
-    @property --ql-border-color {
-        syntax: "<color>";
-        inherits: false;
-        initial-value: var(--accent-primary-06);
-    }
-
-    .quickLink {
-        --ql-border-length: 32px;
-        --ql-border-width: 4px;
-        --ql-border-color: var(--accent-primary-06);
-        width: 250px;
+    .quicklink {
+        width: 220px;
         height: 100px;
         margin: 10px;
         padding: 10px;
-        background:
-            linear-gradient(
-                    var(--ql-border-color) var(--ql-border-length),
-                    transparent 0 calc(100% - var(--ql-border-length)),
-                    var(--ql-border-color) 0
-                )
-                0 0 / var(--ql-border-width) 100%,
-            linear-gradient(
-                    var(--ql-border-color) var(--ql-border-length),
-                    transparent 0 calc(100% - var(--ql-border-length)),
-                    var(--ql-border-color) 0
-                )
-                100% 0 / var(--ql-border-width) 100%,
-            linear-gradient(
-                    to right,
-                    var(--ql-border-color) var(--ql-border-length),
-                    transparent 0 calc(100% - var(--ql-border-length)),
-                    var(--ql-border-color) 0
-                )
-                0 0 / 100% var(--ql-border-width),
-            linear-gradient(
-                    to right,
-                    var(--ql-border-color) var(--ql-border-length),
-                    transparent 0 calc(100% - var(--ql-border-length)),
-                    var(--ql-border-color) 0
-                )
-                0 100% / 100% var(--ql-border-width);
-        background-repeat: no-repeat;
-
-        transition:
-            --ql-border-length 0.3s ease-in-out,
-            --ql-border-width 0.3s ease-in-out,
-            --ql-border-color 0.3s linear;
     }
 
-    .quickLink {
+    .quicklink div {
+        padding: 8px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .quickLink:hover {
-        --ql-border-length: 48px;
-        --ql-border-width: 6px;
-        --ql-border-color: var(--accent-primary-04);
-    }
-
-    .quickLink > a {
-        text-decoration: none;
-        width: 100%;
-        height: 100%;
-        line-height: 100%;
-        display: inline-flex;
         flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
         justify-content: space-between;
-        color: var(--light-text-color);
     }
 
-    .quickLink img {
+    .quicklink img {
         height: 45px;
         width: 45px;
         padding: 8px;
     }
 
-    .quickLink h3 {
+    .quicklink h2 {
+        size: 1.5rem;
         padding-right: 1em;
         text-align: end;
+        color: var(--light-text-color);
     }
 </style>
