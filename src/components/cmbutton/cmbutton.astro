@@ -1,0 +1,107 @@
+---
+export interface Props {
+    url: string;
+    borderLength?: string,
+    borderWidth?: string,
+    borderColor?: string,
+    hoverBorderLength?: string,
+    hoverBorderWidth?: string,
+    hoverBorderColor?: string
+}
+
+const { url } = Astro.props;
+const borderLength = Astro.props.borderLength ?? '32px'
+const borderWidth = Astro.props.borderWidth ?? '4px'
+const borderColor = Astro.props.borderColor ?? 'var(--accent-primary-06)'
+
+const hoverBorderLength = Astro.props.hoverBorderLength ?? '48px'
+const hoverBorderWidth = Astro.props.hoverBorderWidth ?? '6px';
+const hoverBorderColor = Astro.props.hoverBorderColor ?? 'var(--accent-primary-04)';
+---
+
+<style define:vars={{borderLength, borderWidth, borderColor, hoverBorderLength, hoverBorderWidth, hoverBorderColor}}>
+    @property --border-length {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 32px;
+    }
+
+    @property --border-width {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 4px;
+    }
+
+    @property --border-color {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: var(--accent-primary-06);
+    }
+
+    .cm-button {
+        --border-length: var(--borderLength);
+        --border-width: var(--borderWidth);
+        --border-color: var(--borderColor);
+
+
+        background:
+            linear-gradient(
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 0 / var(--border-width) 100%,
+            linear-gradient(
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                100% 0 / var(--border-width) 100%,
+            linear-gradient(
+                    to right,
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 0 / 100% var(--border-width),
+            linear-gradient(
+                    to right,
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 100% / 100% var(--border-width);
+        background-repeat: no-repeat;
+        transition:
+            --border-length 0.3s ease-in-out,
+            --border-width 0.3s ease-in-out,
+            --border-color 0.3s linear;
+    }
+    
+    .cm-button:hover {
+        cursor: pointer;
+        --border-length: var(--hoverBorderLength);
+        --border-width: var(--hoverBorderWidth);
+        --border-color: var(--hoverBorderColor);
+    }
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        cursor: inherit;
+        border: none;
+        background: none;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<a href={url} class="cm-button">
+    <button>
+        <slot />
+    </button>
+</a>

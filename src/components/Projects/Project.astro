@@ -1,18 +1,11 @@
 ---
-import { parse } from 'node-html-parser';
-
 import { ProjectButtonProps } from "./ProjectButton/project-button-props";
 import ProjectButton from "./ProjectButton/ProjectButton.astro";
 
 const imageUrl: string = Astro.props.imageUrl;
 const title: string = Astro.props.title;
-const description: string = Astro.props.description;
-const bulletPoints: string[] = Astro.props.bulletPoints;
-const actions: ProjectButtonProps[] = Astro.props.projectButtonProps;
+const actions: ProjectButtonProps[] = Astro.props.actions ?? [];
 const invertColumns: boolean | undefined = Astro.props.invertColumns;
-
-const bulletPointsHtml = bulletPoints.map(it => parse(it))
-const descriptionHtml = parse(description);
 ---
 
 <style>
@@ -30,27 +23,26 @@ const descriptionHtml = parse(description);
         grid-template-areas:
             "gridImage gridTitle"
             "gridImage gridDescription"
-            "gridImage gridPoints"
             "gridImage gridActions";
         min-width: 100%;
-        --button-background-color: rgb(25, 118, 210);
+
+        margin: 1em 0;
     }
 
     .columnsInverted {
         grid-template-areas:
             "gridTitle       gridImage "
             "gridDescription gridImage "
-            "gridPoints      gridImage "
             "gridActions     gridImage ";
     }
 
     @media only screen and (max-width: 1000px) {
         .project {
+            padding: 0 4px;
             grid-template-areas:
                 "gridTitle"
                 "gridImage"
                 "gridDescription"
-                "gridPoints"
                 "gridActions";
         }
 
@@ -59,14 +51,18 @@ const descriptionHtml = parse(description);
                 "gridTitle"
                 "gridImage"
                 "gridDescription"
-                "gridPoints"
                 "gridActions";
+        }
+
+        .project > img {
+            margin: 0 auto;
+            max-width: 95%;
         }
     }
 
     .project > img {
         grid-area: gridImage;
-        max-width: 100%;
+        width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 12px;
@@ -91,6 +87,10 @@ const descriptionHtml = parse(description);
         color: var(--dark-text-color);
     }
 
+    .project-body {
+        grid-area: gridDescription;
+    }
+
     .projectDescription > li {
         padding: 0.5em 0;
         color: var(--light-gray);
@@ -104,6 +104,7 @@ const descriptionHtml = parse(description);
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end;
+        margin-top: auto;
     }
 
     .columnsInverted .projectActions {
@@ -111,31 +112,23 @@ const descriptionHtml = parse(description);
     }
 
     .projectActions > * {
-        padding: 0.5em;
+        margin: 8px;
     }
 
     @media only screen and (max-width: 600px) {
-        .projectActions > * {
+        .projectActions > li {
             width: 100%;
         }
+
     }
 </style>
 
 <div class={`project ${invertColumns ? "columnsInverted" : ""}`}>
     <img src={imageUrl} alt="" />
     <h3>{title}</h3>
-    <p>
-        {descriptionHtml}
-    </p>
-    <ul class="projectDescription">
-        {
-            bulletPointsHtml.map(point => 
-                <li>
-                    {point}
-                </li>
-            )
-        }
-    </ul>
+    <div class="project-body">
+        <slot />
+    </div>
     <ul class="projectActions">
         {
             actions.map((action) => (

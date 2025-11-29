@@ -5,6 +5,13 @@ import Footer from "../components/Footer/Footer.astro";
 <!doctype html>
 <html lang="en">
 	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
@@ -52,21 +59,47 @@ import Footer from "../components/Footer/Footer.astro";
 		font-size: 1.25rem;
 		--light-background-color: #f8f9fa;
 		--light-text-color: #e0e0e0;
-		--dark-background-color: #201e1d;
-		--dark-text-color: #212529;
+		--dark-background-color: #292728;
+		--dark-text-color: #d6ceab;
 		--light-gray: #adadad;
 		--placeholder-background-color: #343432;
+
+		--accent-primary-12: #371606;
+		--accent-primary-11: #491d08;
+		--accent-primary-10: #5c240a;
+		--accent-primary-09: #6e2b0c;
+		--accent-primary-08: #81320e;
+		--accent-primary-07: #933a10;
+		--accent-primary-06: #9c3d11;
+		--accent-primary-05: #b84814;
+		--accent-primary-04: #dc5618;
+		--accent-primary-03: #e76123;
+		--accent-primary-02: #e96e35;
+		--accent-primary-01: #eb7b47;
+
+		--accent-secondary-01: #76aa4b;
+		--accent-secondary-02: #6c9c44;
+		--accent-secondary-03: #628e3e;
+		--accent-secondary-04: #598038;
+		--accent-secondary-05: #4f7132;
+		--accent-secondary-06: #435f2a;
+		--accent-secondary-07: #3c5525;
+		--accent-secondary-08: #32471f;
+		--accent-secondary-09: #283919;
+		--accent-secondary-10: #1e2b13;
+		--accent-secondary-11: #141c0c;
+		--accent-secondary-12: #0a0e06;
 	}
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-			"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-			"Helvetica Neue", sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
+
+		font-family: "Work Sans", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
 	}
 
 	code {
