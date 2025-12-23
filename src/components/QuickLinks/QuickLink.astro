@@ -14,7 +14,7 @@ const { icon, iconAlt, title, url } = Astro.props;
     <CmButton url={url} borderLength="24px" hoverBorderLength="30px">
         <div>
             <img src={icon} alt={iconAlt} loading="eager" />
-            <h2>{title}</h2>
+            <span>{title}</span>
         </div>
     </CmButton>
 </li>
@@ -40,10 +40,14 @@ const { icon, iconAlt, title, url } = Astro.props;
         padding: 8px;
     }
 
-    .quicklink h2 {
-        size: 1.5rem;
+    .quicklink span {
+        font-size: 1.75em;
         padding-right: 1em;
         text-align: end;
         color: var(--light-text-color);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 </style>
