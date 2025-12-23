@@ -1,145 +1,33 @@
 ---
-import { ProjectButtonProps } from "./ProjectButton/project-button-props";
-import ProjectButton from "./ProjectButton/ProjectButton.astro";
+export interface Props {
+    imageUrl?: string,
+    imageAlt?: string,
+    title: string,
+}
 
-const imageUrl: string = Astro.props.imageUrl;
-const title: string = Astro.props.title;
-const actions: ProjectButtonProps[] = Astro.props.actions ?? [];
-const invertColumns: boolean | undefined = Astro.props.invertColumns;
+const { imageUrl, imageAlt, title } = Astro.props
 ---
-
 <style>
-    #projectsList {
-        padding: 0 1.5em;
-    }
-
-    #projectsList > ul {
-        list-style: none;
-        padding-left: unset;
-    }
-
-    .project {
-        display: grid;
-        grid-template-areas:
-            "gridImage gridTitle"
-            "gridImage gridDescription"
-            "gridImage gridActions";
-        min-width: 100%;
-
-        margin: 1em 0;
-    }
-
-    .columnsInverted {
-        grid-template-areas:
-            "gridTitle       gridImage "
-            "gridDescription gridImage "
-            "gridActions     gridImage ";
-    }
-
-    @media only screen and (max-width: 1000px) {
-        .project {
-            padding: 0 4px;
-            grid-template-areas:
-                "gridTitle"
-                "gridImage"
-                "gridDescription"
-                "gridActions";
-        }
-
-        .columnsInverted {
-            grid-template-areas:
-                "gridTitle"
-                "gridImage"
-                "gridDescription"
-                "gridActions";
-        }
-
-        .project > img {
-            margin: 0 auto;
-            max-width: 95%;
-        }
-    }
-
-    .project > img {
-        grid-area: gridImage;
-        width: 100%;
+    div {
+        padding: 8px;
         height: 100%;
-        object-fit: cover;
-        border-radius: 12px;
-        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-
-    .project > h3 {
-        grid-area: gridTitle;
+    h3 {
         text-align: center;
         color: var(--light-text-color);
-        font-size: 2rem;
     }
 
-    .project > p {
-        grid-area: gridDescription;
-        padding: 1em;
-        color: var(--light-gray);
-    }
-
-    .projectDescription {
-        grid-area: gridPoints;
-        color: var(--dark-text-color);
-    }
-
-    .project-body {
-        grid-area: gridDescription;
-    }
-
-    .projectDescription > li {
-        padding: 0.5em 0;
-        color: var(--light-gray);
-    }
-
-    .projectActions {
-        grid-area: gridActions;
-        list-style-type: none;
-        padding-left: 0;
-        padding-right: 0;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        margin-top: auto;
-    }
-
-    .columnsInverted .projectActions {
-        justify-content: flex-start;
-    }
-
-    .projectActions > * {
-        margin: 8px;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .projectActions > li {
-            width: 100%;
-        }
-
+    hr {
+        width: 90%;
     }
 </style>
 
-<div class={`project ${invertColumns ? "columnsInverted" : ""}`}>
-    <img src={imageUrl} alt="" />
+<div>
     <h3>{title}</h3>
-    <div class="project-body">
-        <slot />
-    </div>
-    <ul class="projectActions">
-        {
-            actions.map((action) => (
-                <li>
-                    <ProjectButton
-                        imageUrl={action.imageUrl}
-                        title={action.title}
-                        destinationUrl={action.destinationUrl}
-                    />
-                </li>
-            ))
-        }
-    </ul>
+    <hr>
+    <slot class="project-body" />
+    <slot name="end" />
 </div>

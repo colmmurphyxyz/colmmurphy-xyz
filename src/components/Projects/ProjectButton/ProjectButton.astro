@@ -1,99 +1,30 @@
 ---
-const imageUrl: string = Astro.props.imageUrl;
-const title: string = Astro.props.title;
-const destinationUrl: string = Astro.props.destinationUrl;
+import Cmbutton from "../../cmbutton/cmbutton.astro";
+
+export interface Props {
+    label: string;
+    destinationUrl: string;
+}
+
+const { label, destinationUrl } = Astro.props;
 ---
 
 <style>
-
-    @property --pb-border-length {
-        syntax: "<length>";
-        inherits: false;
-        initial-value: 16px;
-    }
-
-    @property --pb-border-width {
-        syntax: "<length>";
-        inherits: false;
-        initial-value: 4px;
-    }
-
-    @property --pb-border-color {
-        syntax: "<color>";
-        inherits: false;
-        initial-value: var(--accent-primary-06);
-    }
-
-    .projectButton {
-        --pb-border-length: 16px;
-        --pb-border-width: 4px;
-        --pb-border-color: var(--accent-primary-06);
-        background:
-            linear-gradient(
-                    var(--pb-border-color) var(--pb-border-length),
-                    transparent 0 calc(100% - var(--pb-border-length)),
-                    var(--pb-border-color) 0
-                )
-                0 0 / var(--pb-border-width) 100%,
-            linear-gradient(
-                    var(--pb-border-color) var(--pb-border-length),
-                    transparent 0 calc(100% - var(--pb-border-length)),
-                    var(--pb-border-color) 0
-                )
-                100% 0 / var(--pb-border-width) 100%,
-            linear-gradient(
-                    to right,
-                    var(--pb-border-color) var(--pb-border-length),
-                    transparent 0 calc(100% - var(--pb-border-length)),
-                    var(--pb-border-color) 0
-                )
-                0 0 / 100% var(--pb-border-width),
-            linear-gradient(
-                    to right,
-                    var(--pb-border-color) var(--pb-border-length),
-                    transparent 0 calc(100% - var(--pb-border-length)),
-                    var(--pb-border-color) 0
-                )
-                0 100% / 100% var(--pb-border-width);
-        background-repeat: no-repeat;
-
-        transition:
-            --pb-border-length 0.3s ease-in-out,
-            --pb-border-width 0.3s ease-in-out,
-            --pb-border-color 0.3s linear;
-    }
-
-    .projectButton:hover {
-        --pb-border-length: 24px;
-        --pb-border-width: 6px;
-        --pb-border-color: var(--accent-primary-04);
-    }
-
-    .projectButton > a {
-        height: 100%;
-        margin: 0.5em;
-        display: flex;
-        align-items: center;
-        text-decoration: none; /* Hide text underline */
-        text-transform: capitalize;
-        font-weight: 600; /* bold */
-    }
-
-    .projectButton img {
-        width: 1.3em;
-        height: 1.3em;
-        filter: invert(100%);
-    }
-
-    .projectButton > a > p {
+    span {
+        display: block;
+        font-size: 1.5em;
         color: var(--light-text-color);
-        padding: 1px 0.5em;
+        padding: 8px 0;
     }
 </style>
 
-<div class="projectButton">
-    <a href={destinationUrl}>
-        <img src={imageUrl} alt={`Icon for ${title} button`} />
-        <p>{title}</p>
-    </a>
-</div>
+<Cmbutton
+    url={destinationUrl}
+    borderWidth="2px"
+    borderLength="8px"
+    ,
+    hoverBorderWidth="3px"
+    hoverBorderLength="12px"
+>
+    <span>{label}</span>
+</Cmbutton>
