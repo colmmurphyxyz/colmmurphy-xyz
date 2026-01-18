@@ -36,3 +36,8 @@ export const getCurrentAndRecentTracks = async (recentLimit: number): Promise<Pl
     }
     return [{ playedAt: "", track: current }, ...recent]
 }
+
+export const getFastFetch = async (): Promise<string> => {
+    const response = await fetch(`${getRestUrl()}/fastfetch`)
+    return response.text()
+}

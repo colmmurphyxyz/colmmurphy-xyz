@@ -1,0 +1,11 @@
+---
+import FastFetchDisplay from "../components/FastFetch/FastFetchDisplay.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <h1>FastFetch</h1>
+    <FastFetchDisplay server:defer>
+        <p>Fallback</p>
+	</FastFetchDisplay>
+</Layout>
