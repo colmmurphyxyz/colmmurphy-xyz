@@ -1,23 +1,12 @@
 ---
-import { getFastFetch } from "../../api/api";
+import { getFastFetchLogo, getFastFetchText } from "../../api/api";
 
 export const prerender = false;
 
-const ffHtml = await getFastFetch();
+const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetchText()])
 ---
 
 <style is:global>
-    pre {
-        white-space: pre;
-        font-family: monospace;
-
-        color: #ffffff;
-        background-color: #1c1c1f;
-
-        display: flex;
-        gap: 4ch;
-    }
-
     .ff-bold {
         font-weight: bold;
     }
@@ -110,4 +99,70 @@ const ffHtml = await getFastFetch();
     }
 </style>
 
-<div set:html={ffHtml} />
+<style>
+
+    .fastfetch-display {
+        margin-inline: 8px;
+        --border-length: 48px;
+        --border-width: 4px;
+        --border-color: var(--accent-secondary-06);
+        background:
+            linear-gradient(
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 0 / var(--border-width) 100%,
+            linear-gradient(
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                100% 0 / var(--border-width) 100%,
+            linear-gradient(
+                    to right,
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 0 / 100% var(--border-width),
+            linear-gradient(
+                    to right,
+                    var(--border-color) var(--border-length),
+                    transparent 0 calc(100% - var(--border-length)),
+                    var(--border-color) 0
+                )
+                0 100% / 100% var(--border-width);
+        background-repeat: no-repeat;
+    }
+
+    pre {
+        white-space: pre;
+        font-family: monospace;
+
+        max-width: 100%;
+
+        color: #ffffff;
+        background-color: #1c1c1f;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 4ch;
+        flex-wrap: wrap
+    }
+
+    pre > div:nth-child(1) {
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+
+    pre > div:nth-child(2) {
+        white-space: pre-wrap;
+    }
+</style>
+
+<pre class="fastfetch-display">
+    <div set:html={logoHtml} />
+    <div set:html={textHtml} />
+</pre>
