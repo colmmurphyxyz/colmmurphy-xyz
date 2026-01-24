@@ -17,6 +17,6 @@ import Layout from "../layouts/Layout.astro";
     <h1>Fetch</h1>
     <p>fastfetch of the server that hosts this site.</p>
     <FastFetchDisplay server:defer>
-        <p>Fallback</p>
+        <div style="min-height: 100vh;" slot="fallback" />
 	</FastFetchDisplay>
 </Layout>

@@ -3,7 +3,10 @@ import { getFastFetchLogo, getFastFetchText } from "../../api/api";
 
 export const prerender = false;
 
-const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetchText()])
+const [logoHtml, textHtml] = await Promise.all([
+    getFastFetchLogo(),
+    getFastFetchText(),
+]);
 ---
 
 <style is:global>
@@ -100,7 +103,6 @@ const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetch
 </style>
 
 <style>
-
     .fastfetch-display {
         margin-inline: 8px;
         --border-length: 48px;
@@ -136,6 +138,10 @@ const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetch
         background-repeat: no-repeat;
     }
 
+    .fastfetch-wrapper {
+        min-height: 100vh;
+    }
+
     pre {
         white-space: pre;
         font-family: monospace;
@@ -149,7 +155,7 @@ const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetch
         flex-direction: row;
         justify-content: center;
         gap: 4ch;
-        flex-wrap: wrap
+        flex-wrap: wrap;
     }
 
     pre > div:nth-child(1) {
@@ -162,7 +168,9 @@ const [logoHtml, textHtml] = await Promise.all([getFastFetchLogo(), getFastFetch
     }
 </style>
 
-<pre class="fastfetch-display">
-    <div set:html={logoHtml} />
-    <div set:html={textHtml} />
-</pre>
+<div class="fastfetch-wrapper">
+    <pre class="fastfetch-display">
+        <div set:html={logoHtml} />
+        <div set:html={textHtml} />
+    </pre>
+</div>
