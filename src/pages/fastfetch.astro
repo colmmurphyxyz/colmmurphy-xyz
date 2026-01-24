@@ -1,0 +1,22 @@
+---
+import FastFetchDisplay from "../components/FastFetch/FastFetchDisplay.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+    h1 {
+        margin: 0;
+    }
+    h1, p {
+        color: var(--light-text-color);
+        text-align: center;
+    }
+</style>
+
+<Layout>
+    <h1>Fetch</h1>
+    <p>fastfetch of the server that hosts this site.</p>
+    <FastFetchDisplay server:defer>
+        <div style="min-height: 100vh;" slot="fallback" />
+	</FastFetchDisplay>
+</Layout>
