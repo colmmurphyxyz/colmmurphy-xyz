@@ -14,6 +14,9 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <Layout>
+    <link slot="link-canonical" rel="canonical" href="https://colmmurphy.xyz/fastfetch"/>
+    <meta slot="og-url" property="og:url" content="https://colmmurphy.xyz/fastfetch" />
+
     <h1>Fetch</h1>
     <p>fastfetch of the server that hosts this site.</p>
     <FastFetchDisplay server:defer>
