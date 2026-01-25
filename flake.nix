@@ -2,7 +2,7 @@
   description = "AstroJS static site";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -53,7 +53,7 @@
           installPhase = ''
             mkdir -p $out
             cp -r dist node_modules $out/
-            
+
             mkdir -p $out/bin
             cat > $out/bin/colmmurphy-xyz-frontend <<EOF
             #!${pkgs.bash}/bin/bash
