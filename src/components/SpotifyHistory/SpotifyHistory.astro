@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
 import { getCurrentAndRecentTracks } from "../../api/api";
-import { PlayHistory } from "../../api/types";
+import { PlayHistory, Track } from "../../api/types";
 import SpotifyTrackCard from "./SpotifyTrackCard.astro";
 
 function filterRepeats<T>(arr: T[], eq: (a: T, b: T) => boolean ): T[] {
@@ -14,10 +14,10 @@ function filterRepeats<T>(arr: T[], eq: (a: T, b: T) => boolean ): T[] {
     return filtered;
 }
 
-function smallestAcceptableImage(track: PlayHistory, minWidth: number, minHeight: number): string | null {
+function smallestAcceptableImage(track: Track, minWidth: number, minHeight: number): string | null {
     let smallestArea = Number.MAX_SAFE_INTEGER;
     let smallestImageUrl = null;
-    for (const image of track.track.album.images) {
+    for (const image of track.album.images) {
         if (image.height < minHeight || image.width < minWidth) {
             continue;
         }
@@ -33,7 +33,6 @@ function smallestAcceptableImage(track: PlayHistory, minWidth: number, minHeight
 
 const tracks = await getCurrentAndRecentTracks(20);
 const history = filterRepeats(tracks, (a, b) => a.track.id === b.track.id);
-const images = tracks.map(track => smallestAcceptableImage(track, 120, 120));
 ---
 
 <style>
@@ -111,7 +110,7 @@ const images = tracks.map(track => smallestAcceptableImage(track, 120, 120));
                         track={track}
                         trackName={track.name}
                         artistName={track.artists[0].name}
-                        coverImageUrl={images[idx]}
+                        coverImageUrl={smallestAcceptableImage(track, 120, 120)}
                         playedAt={playedAt}
                     />
                 </li>
