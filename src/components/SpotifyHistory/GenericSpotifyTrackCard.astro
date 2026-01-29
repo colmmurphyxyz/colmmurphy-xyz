@@ -1,23 +1,69 @@
 <style>
-    .spotifyTrackCard {
-        position: relative;
-        width: 250px;
-        margin: 0.5em;
-        padding-top: 0.9em;
-        border-radius: 8px;
-        background-color: var(--light-background-color);
-
-        display: flex;
-        flex-direction: column;
-    }
-
     .spotifyTrackCard > div.placeholder {
         margin: 0 auto;
-        border-radius: 8px;
+        /* border-radius: 8px; */
         width: 120px;
         height: 120px;
         background-color: var(--placeholder-background-color);
         pointer-events: none;
+    }
+    /* Background */
+    .spotifyTrackCard {
+        --stc-border-length: 48px;
+        --stc-border-width: 4px;
+        --stc-border-color: var(--accent-secondary-06);
+        background:
+            linear-gradient(
+                    var(--stc-border-color) var(--stc-border-length),
+                    transparent 0 calc(100% - var(--stc-border-length)),
+                    var(--stc-border-color) 0
+                )
+                0 0 / var(--stc-border-width) 100%,
+            linear-gradient(
+                    var(--stc-border-color) var(--stc-border-length),
+                    transparent 0 calc(100% - var(--stc-border-length)),
+                    var(--stc-border-color) 0
+                )
+                100% 0 / var(--stc-border-width) 100%,
+            linear-gradient(
+                    to right,
+                    var(--stc-border-color) var(--stc-border-length),
+                    transparent 0 calc(100% - var(--stc-border-length)),
+                    var(--stc-border-color) 0
+                )
+                0 0 / 100% var(--stc-border-width),
+            linear-gradient(
+                    to right,
+                    var(--stc-border-color) var(--stc-border-length),
+                    transparent 0 calc(100% - var(--stc-border-length)),
+                    var(--stc-border-color) 0
+                )
+                0 100% / 100% var(--stc-border-width);
+        background-repeat: no-repeat;
+    }
+
+    .spotifyTrackCard {
+        position: relative;
+        width: 250px;
+        margin: 0.5em;
+        padding: 16px;
+
+        display: flex;
+        flex-direction: column;
+
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+    }
+
+    .spotifyTrackCard > img {
+        margin: 0 auto;
+        pointer-events: none;
+
+        /* Hide alt text until image loaded */
+        color: var(--placeholder-background-color);
+        background-color: var(--placeholder-background-color);
     }
 
     .spotifyTrackCard > div > h3,
@@ -27,19 +73,24 @@
         text-overflow: ellipsis;
         text-align: center;
         padding: 0 1ch;
+        color: var(--light-text-color);
     }
 
     .spotifyTrackCard > p {
         position: absolute;
-        top: -4px;
-        right: 6px;
+        top: 0px;
+        right: 16px;
         color: var(--light-gray);
         font-size: 0.8em;
+    }
+
+    .spotifyTrackCard > img.loaded {
+        visibility: visible;
     }
 </style>
 
 <div class="spotifyTrackCard">
-    <div class="placeholder" />
+    <div class="placeholder"></div>
     <div>
         <h3>...</h3>
         <p>...</p>
