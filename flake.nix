@@ -53,13 +53,6 @@
           installPhase = ''
             mkdir -p $out
             cp -r dist node_modules $out/
-
-            mkdir -p $out/bin
-            cat > $out/bin/colmmurphy-xyz-frontend <<EOF
-            #!${pkgs.bash}/bin/bash
-            exec ${nodejs}/bin/node $out/dist/server/entry.mjs
-            EOF
-            chmod +x $out/bin/colmmurphy-xyz-frontend
           '';
         };
       }
