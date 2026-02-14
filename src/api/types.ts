@@ -56,3 +56,8 @@ export type PlayHistory = {
     playedAt: PlayTime;
     track: Track;
 };
+
+export type Visit = {
+    url: string;
+    fingerprint: string;
+}

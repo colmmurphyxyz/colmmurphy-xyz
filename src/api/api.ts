@@ -1,4 +1,4 @@
-import { PlayHistory, SpotifyStatus, Track } from './types';
+import { PlayHistory, SpotifyStatus, Track, Visit } from './types';
 
 const getRestUrl = (): string => {
     if (import.meta.env.PROD) {
@@ -45,4 +45,14 @@ export const getFastFetchLogo = async (): Promise<string> => {
 export const getFastFetchText = async (): Promise<string> => {
     const response = await fetch(`${getRestUrl()}/fastfetch/text`)
     return response.text()
+}
+
+export const postVisit = async (visit: Visit): Promise<void> => {
+    fetch(`${getRestUrl()}/visits`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(visit)
+    })
 }
