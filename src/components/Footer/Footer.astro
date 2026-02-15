@@ -16,9 +16,13 @@
     import { postVisit } from "../../api/api";
     import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
-    const url = window.location.toString();
-    FingerprintJS.load()
-      .then((agent) => agent.get())
-      .then((it) => postVisit({ url, fingerprint: it.visitorId }));
+    function logPageVisit() {
+      const url = window.location.toString();
+      FingerprintJS.load()
+        .then((agent) => agent.get())
+        .then((it) => postVisit({ url, fingerprint: it.visitorId }));
+    }
+
+    document.addEventListener("DOMContentLoaded", logPageVisit, false);
   </script>
 </footer>
