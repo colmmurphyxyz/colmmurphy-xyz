@@ -14,15 +14,18 @@
 
   <script>
     import { postVisit } from "../../api/api";
-    import FingerprintJS from "@fingerprintjs/fingerprintjs";
+    const { default: FingerprintJS } =
+      await import("@fingerprintjs/fingerprintjs");
 
     function logPageVisit() {
       const url = window.location.toString();
       FingerprintJS.load()
         .then((agent) => agent.get())
-        .then((it) => postVisit({ url, fingerprint: it.visitorId }));
+        .then((it) => {
+          postVisit({ url, fingerprint: it.visitorId });
+        });
     }
 
-    document.addEventListener("DOMContentLoaded", logPageVisit, false);
+    requestIdleCallback(logPageVisit);
   </script>
 </footer>
