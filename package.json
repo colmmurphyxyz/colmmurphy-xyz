@@ -15,8 +15,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "9.5.3",
-    "astro": "5.17.2",
-    "@fingerprintjs/fingerprintjs": "5.0.1"
+    "@astrojs/node": "10.0.4",
+    "astro": "6.1.1",
+    "@fingerprintjs/fingerprintjs": "5.1.0"
   }
 }
