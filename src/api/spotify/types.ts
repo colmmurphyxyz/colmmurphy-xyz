@@ -1,4 +1,3 @@
-
 export type SpotifyStatus = {
     available: boolean;
     reason?: string;
@@ -37,7 +36,7 @@ export type Album = {
 export type Track = {
     album: Album;
     artists: SimpleArtist[];
-    discNumber: number,
+    discNumber: number;
     durationMs: number;
     explicit: boolean;
     href: string;
@@ -56,4 +55,4 @@ export type PlayTime = string;
 export type PlayHistory = {
     playedAt: PlayTime;
     track: Track;
-}
+};
