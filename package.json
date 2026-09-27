@@ -1,22 +1,27 @@
 {
-  "name": "colmmurphy-xyz",
-  "author": {
-    "email": "colmmurphy016@gmail.com",
-    "name": "Colm Murphy",
-    "url": "https://colmmurphy.xyz"
-  },
-  "license": "MIT",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/node": "11.1.6",
-    "@fingerprintjs/fingerprintjs": "5.2.0",
-    "astro": "7.3.5"
-  }
+    "name": "colmmurphy-xyz",
+    "version": "0.0.1",
+    "license": "MIT",
+    "author": {
+        "name": "Colm Murphy",
+        "email": "colmmurphy016@gmail.com",
+        "url": "https://colmmurphy.xyz"
+    },
+    "type": "module",
+    "scripts": {
+        "dev": "astro dev",
+        "fmt": "oxfmt",
+        "fmt:check": "oxfmt --check",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/node": "11.1.6",
+        "@fingerprintjs/fingerprintjs": "5.2.0",
+        "astro": "7.3.5"
+    },
+    "devDependencies": {
+        "oxfmt": "0.70.0"
+    }
 }
