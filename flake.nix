@@ -2,7 +2,7 @@
   description = "AstroJS static site";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -25,7 +25,6 @@
           buildInputs = [
             nodejs
             pkgs.git
-            pkgs.nodePackages.npm
           ];
 
           shellHook = ''
