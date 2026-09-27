@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
-import { getCurrentAndRecentTracks } from "../../api/api";
-import { PlayHistory, Track } from "../../api/types";
+import { getCurrentAndRecentTracks } from "../../api/spotify/spotify-api";
+import { Track } from "../../api/spotify/types";
 import SpotifyTrackCard from "./SpotifyTrackCard.astro";
 
 function filterRepeats<T>(arr: T[], eq: (a: T, b: T) => boolean ): T[] {

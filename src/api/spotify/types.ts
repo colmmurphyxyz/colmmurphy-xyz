@@ -1,3 +1,4 @@
+
 export type SpotifyStatus = {
     available: boolean;
     reason?: string;
@@ -55,9 +56,4 @@ export type PlayTime = string;
 export type PlayHistory = {
     playedAt: PlayTime;
     track: Track;
-};
-
-export type Visit = {
-    url: string;
-    fingerprint: string;
 }

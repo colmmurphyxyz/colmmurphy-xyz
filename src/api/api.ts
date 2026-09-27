@@ -1,58 +1,6 @@
-import { PlayHistory, SpotifyStatus, Track, Visit } from './types';
-
-const getRestUrl = (): string => {
+export const getRestUrl = (): string => {
     if (import.meta.env.PROD) {
         return 'https://api.colmmurphy.xyz/api'
     }
     return 'http://127.0.0.1:8080/api'
-}
-
-export const getSpotifyStatus = async () =>
-    fetch(`${getRestUrl()}/spotify/status`)
-        .then((response) => response.json())
-        .then((json) => json as SpotifyStatus)
-
-export const getRecentTracks = async (limit: number) =>
-    fetch(`${getRestUrl()}/spotify/recenttracks?limit=${limit}`)
-        .then((response) => response.json())
-        .then((json) => json as PlayHistory[]);
-
-export const getCurrentlyPlayingTrack = async (): Promise<Track | null> => {
-    const response = await fetch(`${getRestUrl()}/spotify/currentlyplaying`);
-    if (response.status != 200) {
-        return null;
-    }
-    try {
-        return await response.json() as Track
-    } catch {
-        return null;
-    }
-};
-
-export const getCurrentAndRecentTracks = async (recentLimit: number): Promise<PlayHistory[]> => {
-    const [current, recent] = await Promise.all([getCurrentlyPlayingTrack(), getRecentTracks(recentLimit)]);
-    if (current === null) {
-        return recent;
-    }
-    return [{ playedAt: "", track: current }, ...recent]
-}
-
-export const getFastFetchLogo = async (): Promise<string> => {
-    const response = await fetch(`${getRestUrl()}/fastfetch/logo`)
-    return response.text()
-}
-
-export const getFastFetchText = async (): Promise<string> => {
-    const response = await fetch(`${getRestUrl()}/fastfetch/text`)
-    return response.text()
-}
-
-export const postVisit = async (visit: Visit): Promise<void> => {
-    fetch(`${getRestUrl()}/visits`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(visit)
-    })
 }
